@@ -129,20 +129,6 @@
                         Cochez une case pour sélectionner 1 adversaire. Cliquez sur les noms pour en sélectionner
                         plusieurs (choix aléatoire parmis ceux sélectionnés).
                     </blockquote>
-                    <div>
-                        <div class="col s12 m12 l12" style="min-height=50">
-                            <img src="/static/img/user_avatar/default.png" alt="{{ current_user.avatar }}"
-                                 class="responsive-img circle materialboxed" width="100">
-                            <p style="text-align:center">{{ user.username }}</p>
-                        </div>
-                        <div class="col s12 m12 l4" min-height=50>
-                            <h4 style="text-align:center">VS<h4>
-                        </div>
-                        <div class="col s12 m12 l4" min-height=50>
-                            <p style="text-align:center">Joueur</p>
-                            <p style="text-align:center">IA</p>
-                        </div>
-                    </div>
                     <h4>Joueurs du championnat</h4>
                     <nav class="indigo darken-4">
                         <div class="nav-wrapper">
@@ -385,3 +371,4 @@
         console.log("{{ championnat }}");
     </script>
 {% endblock %}
+

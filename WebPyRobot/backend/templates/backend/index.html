@@ -26,8 +26,8 @@
         <ul class="right hide-on-med-and-down">
             <li><a class="modal-trigger yellow-text" href="#modalConnexion"><i class="fas fa-sign-in-alt fa-lg"></i>
                 Connexion</a></li>
-            <!--<li><a class="modal-trigger yellow-text" href="#modalInscription"><i class="fas fa-user-plus fa-lg"></i>
-                Inscription</a></li>-->
+            <li><a class="modal-trigger yellow-text" href="#modalInscription"><i class="fas fa-user-plus fa-lg"></i>
+                Inscription</a></li>
         </ul>
 
 
@@ -59,13 +59,21 @@
                     <label for="password">Mot de Passe</label>
                 </div>
                 <div class="modal-footer">
-                    <input type="submit" value="Se Connecter" class=" modal-action waves-effect indigo darken-4 btn">
+                    <input type="submit" value="Se Connecter" class="modal-action waves-effect indigo darken-4 btn">
+
+                    <!--MODIF connexion-->
+                    <div class="input-field col s12">
+                        <p style="text-align:center">Vous n'avez pas de compte ?</p>
+                        <p style="text-align:center"><a onClick="closeModal()" class="modal-trigger" href="#modalInscription">Créer un compte</a></p>
+                    </div>
+                    <!--END MODIF-->
+
                 </div>
             </div>
         </form>
     </div>
     <div class="modal-footer">
-        <p></p>
+      <p></p>
     </div>
 </div>
 <div id="modalInscription" class="modal">
@@ -162,7 +170,8 @@
             <br><br>
             <div class="section">
                 <div class="row white-text lighten-5">
-                     <div class="col s12 m12 l12">
+                    <!--MODIF-->
+                     <div class="col s8">
                          <h5>
                             Sur notre site nous vous proposons de programmer, en langage Python,
                             le comportement d'un tank. Pour pimenter votre expérience, mesurez vous aux autres
@@ -180,7 +189,7 @@
                         </h5>
                          <br><br><br><br><br><br>
                      </div>
-                    <div class="col s12 m12 l12 center-align">
+                    <div class="col s4 center-align">
                         <!--
                         <h5>
                             Envie d'apprendre un langage de programmation ? S'initier à la programmation ?
@@ -209,14 +218,16 @@
                         </h5>
                         -->
 
-                        <a class="waves-effect indigo darken-4 waves-light btn-large modal-trigger yellow-text" href="#modalInscription"><i class="fas fa-play"></i> jouer</a>
-
+                        <a class="waves-effect indigo darken-4 waves-light btn-large modal-trigger yellow-text" href="#modalConnexion"><i class="fas fa-play"></i> jouer</a>
+                        <!--END MODIF-->
                     </div>
                 </div>
             </div>
         </div>
         <div class="parallax">
+            <!--
             <img src="{% static 'img/armour.png' %}" alt="Unsplashed background img 1">
+            -->
         </div>
     </div>
 </div>
@@ -241,5 +252,10 @@
             alertify.alert(msg_err);
         }, 1000);
     {% endif %}
+
+    //MODIF
+    function closeModal() {
+        $('#modalConnexion').modal();
+    }
 </script>
 </html>
