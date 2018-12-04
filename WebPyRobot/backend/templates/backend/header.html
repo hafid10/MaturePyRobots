@@ -3,7 +3,7 @@
 
     <ul id="index2" class="dropdown-content center">
         <!--<li>
-            <a class="indigo-text darken-4 tooltipped" data-position="right" data-delay="50"
+            <a class="blue-grey-text darken-4 tooltipped" data-position="right" data-delay="50"
                data-tooltip="{{ championnat }}" href="#" style="cursor:default">
                 <i class="fas fa-trophy"></i>
                 {{ championnat|truncatechars:50 }}
@@ -12,11 +12,11 @@
         <li class="divider"></li>-->
         <li>
             <a style="cursor:pointer" href="{% url 'backend:battle_histories' %}"
-               class="indigo-text darken-4"><i class="fas fa-history fa-lg"></i> Historique de combat
+               class="blue-grey-text darken-4"><i class="fas fa-history fa-lg"></i> Historique de combat
             </a>
         </li>
         <!--<li>
-            <a class="indigo-text darken-4 waves-effect waves-light modal-trigger"
+            <a class="blue-grey-text darken-4 waves-effect waves-light modal-trigger"
                onclick="window.location.href='/championnat'">
                 <i class="fas fa-cogs"></i> Les championnats</a>
         </li>-->
@@ -24,12 +24,12 @@
 
     <ul id="index4" class="dropdown-content center">
         <li>
-            <a class="indigo-text darken-4" href="{% url 'backend:change_password' %}">
+            <a class="blue-grey-text darken-4" href="{% url 'backend:change_password' %}">
                 <i class="fab fa-keycdn fa-lg"></i> Changer le mot de passe
             </a>
         </li>
         <li>
-            <a class="indigo-text darken-4 modal-trigger" href="#modal_logout">
+            <a class="blue-grey-text darken-4 modal-trigger" href="#modal_logout">
                 <i class="fas fa-sign-out-alt"></i> Déconnexion
             </a>
         </li>
@@ -38,48 +38,48 @@
     <ul id="index3" class="dropdown-content center">
         <li>
             <a onclick="window.open('{% url "backend:documentation" %}', 'Python - Documentation','width=1080, height=720')"
-               class="indigo-text darken-4 collection-item">
+               class="blue-grey-text darken-4 collection-item">
                 <i class="fas fa-book"></i>
                 Documentation</a>
         </li>
         <!--<li>
             <a onclick="window.open('/faq', 'Foire au questions','width=1080, height=720')"
-               class="indigo-text darken-4 collection-item ">
+               class="blue-grey-text darken-4 collection-item ">
                 <i class="fas fa-question"></i>
                 FAQ</a>
         </li>-->
         <li>
             <a onclick="window.open('{% url "backend:tutoriels" %}', 'Python - Tutoriels', 'width=1080, height=720')"
-               class="indigo-text darken-4 collection-item ">
+               class="blue-grey-text darken-4 collection-item ">
                 <i class="fas fa-desktop"></i>
                 Tutoriels</a>
         </li>
     </ul>
 
-    <nav class="indigo darken-4" role="navigation">
+    <nav class="blue-grey darken-4" role="navigation">
         <div class="container nav-wrapper">
             <a href="/" class="brand-logo yellow-text" onclick="window.location.href='/'">PyRobot</a>
             {% if pageIn != 'documentation' and pageIn != 'faq' and pageIn != 'tutoriels' %}
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
                     <li>
-                        <div class="yellow-text dropdown-button" style="padding-left:10px;padding-right:10px" href="#">
-                            {{ point }}
+                        <div class="yellow-text nav-elem" href="#">
+                            <b>{{ point }}</b>
                             <i class="fab fa-product-hunt fa-lg"></i>
                         </div>
                     </li>
                     <li>
-                        <a class="yellow-text dropdown-button" href="{% url 'backend:profile_perso' %}">
+                        <a class="nav-elem" href="{% url 'backend:profile_perso' %}">
                             <i class="fas fa-user-circle fa-lg"></i> {{ user }}</a>
                     </li>
                     <li>
-                        <a class="yellow-text dropdown-button " href="#" data-beloworigin="true"
+                        <a class="dropdown-button nav-elem" href="#" data-beloworigin="true"
                            data-activates="index3">
                             <i class="far fa-question-circle fa-lg"></i> Aide
                             <i class="material-icons right">arrow_drop_down</i>
                         </a>
                     </li>
                     <li>
-                        <a class="yellow-text dropdown-button" href="#" data-beloworigin="true" data-activates="index4">
+                        <a class="dropdown-button nav-elem" href="#" data-beloworigin="true" data-activates="index4">
                             <i class="fas fa-cog fa-lg"></i>
                         </a>
                     </li>
@@ -114,13 +114,13 @@
         </div>
     </li>
     <li class="no-padding">
-        <a style="cursor:pointer" class="waves-effect indigo-text darken-4"
+        <a style="cursor:pointer" class="waves-effect blue-grey-text darken-4"
            href="{% url 'backend:battle_histories' %}">
             <i class="fas fa-list fa-lg"></i>
             Historique de combat</a>
     </li>
     <li class="no-padding">
-        <a class="indigo-text darken-4 waves-effect waves-light modal-trigger"
+        <a class="blue-grey-text darken-4 waves-effect waves-light modal-trigger"
            href="{% url 'backend:championship' %}">
             <i class="fas fa-trophy fa-lg" data-fa-transform="shrink-6" data-fa-mask="fas fa-square fa-lg"></i> Les
             championnats</a>
@@ -128,25 +128,25 @@
     <li class="no-padding">
         <ul class="collapsible collapsible-accordion">
             <li>
-                <a class="indigo-text darken-4  collapsible-header">
+                <a class="blue-grey-text darken-4  collapsible-header">
                     <i class="fas fa-question-circle fa-lg"></i> Aide<i class="material-icons">arrow_drop_down</i></a>
                 <div class="collapsible-body">
                     <ul>
                         <li>
                             <a target="_blank" href="{% url 'backend:documentation' %}"
-                               class="indigo-text darken-4 collection-item">
+                               class="blue-grey-text darken-4 collection-item">
                                 <i class="fas fa-book"></i>
                                 Documentation</a>
                         </li>
                         <!--<li>
                             <a onclick="window.open('/faq', 'Foire au questions','width=1080, height=720')"
-                               class="indigo-text darken-4 collection-item ">
+                               class="blue-grey-text darken-4 collection-item ">
                                 <i class="fas fa-question"></i>
                                 FAQ</a>
                         </li>-->
                         <li>
                             <a target="_blank" href="{% url 'backend:tutoriels' %}"
-                               class="indigo-text darken-4 collection-item ">
+                               class="blue-grey-text darken-4 collection-item ">
                                 <i class="fas fa-desktop"></i>
                                 Tutoriels</a>
                         </li>
@@ -159,21 +159,21 @@
     <li class="no-padding">
         <ul class="collapsible collapsible-accordion">
             <li>
-                <a class="indigo-text darken-4 collapsible-header">
+                <a class="blue-grey-text darken-4 collapsible-header">
                     <i class="fas fa-cogs fa-lg"></i> Paramètres<i class="material-icons">arrow_drop_down</i></a>
                 <div class="collapsible-body">
                     <ul>
-                        <li><a class="indigo-text darken-4"
+                        <li><a class="blue-grey-text darken-4"
                                href="{% url 'backend:change_password' %}">
                             <i class="fab fa-keycdn fa-lg"></i> Changer le mot de passe
                         </a>
                             <!--<li>
-                                <a class="indigo-text darken-4 waves-effect waves-light modal-trigger"
+                                <a class="blue-grey-text darken-4 waves-effect waves-light modal-trigger"
                                    onclick="window.location.href='/championnat'">
                                     <i class="fas fa-cogs"></i> Les championnats</a>
                             </li>-->
                         <li>
-                            <a class="indigo-text darken-4 modal-trigger" href="#modal_logout" style="cursor:pointer"><i
+                            <a class="blue-grey-text darken-4 modal-trigger" href="#modal_logout" style="cursor:pointer"><i
                                     class="fas fa-sign-out-alt"></i> Déconnexion</a>
                         </li>
                     </ul>

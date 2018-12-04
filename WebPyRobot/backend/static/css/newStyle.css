@@ -1,0 +1,143 @@
+@font-face {
+    font-family: "Roadtest";
+    src: url("../fonts/roadtest/roadtest.ttf");
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: "RobotCrush";
+    src: url("../fonts/robot_crush/Robot Crush Italic.ttf");
+}
+
+body {
+    background-color: #e6e6e6; !important
+}
+
+a {
+    color: blue;
+}
+
+#nav-mobile .nav-elem {
+    font-size: 1.2em;
+    padding-left: 10px;
+    padding-right: 10px
+}
+
+#dashboard .svg-inline--fa, .btn-play .svg-inline--fa {
+    width: 30px !important;
+    height: 30px !important;
+}
+
+.btn-play {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    padding: 0;
+    background: #cb4e4e;
+    color: #fff;
+    box-shadow: 0 6px #b6b6b6;
+    transition: none;
+    border: none;
+
+    background: none;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 700;
+    outline: none;
+    position: relative;
+    line-height: 100px;
+}
+
+.vertical-center {
+    line-height: 130px;
+}
+
+.bienvenue {
+    font-family: "Roadtest";
+    font-size: 8em;
+}
+
+.card {
+    max-width: 400px;
+    border-radius: 50%;
+}
+.card-image {
+    border-radius: 50%;
+}
+
+.align-center {
+    display: table;
+    margin: 0 auto;
+}
+
+.border-spaced {
+    margin: 10px;
+}
+
+.brand-logo {
+    font-family: "Roadtest";
+    font-size: 50px !important;
+}
+
+.btn-choice {
+    height: 100px;
+    width: 100px;
+    cursor: pointer;
+    border-radius: 5px;
+    border: 2px solid #c6c6c6;
+}
+.btn-choice:checked {
+    background-color: #c6c6c6;
+}
+#versus .img-responsive {
+    max-width: 100px;
+}
+
+
+.checkbox-group {
+    position: relative;
+    border: 3px solid #c6c6c6;
+}
+.checkbox-group input {
+    position: absolute;
+    visibility: hidden;
+    display: none;
+}
+.checkbox-group label::before {
+    display: none;
+}
+label + input[type="checkbox"] + label {
+    border-left: 2px solid #c6c6c6;
+}
+.checkbox-group label {
+    color: #263238;
+    display: inline-block;
+    position: relative;
+    height: 100%;
+    padding: 5px 20px;
+}
+.checkbox-group input[type="checkbox"]:checked + label {
+    background-color: #c6c6c6;
+}
+
+@media only screen and (max-width: 700px) {
+    h4 {
+        font-size: 1.5em !important;
+    }
+    h5 {
+        font-size: 1em !important;
+    }
+    .bienvenue {
+        font-size: 4em;
+    }
+    #logo-container {
+        display: none;
+    }
+    #versus .vertical-center {
+        line-height: 1.5em;
+    }
+    #versus .img-responsive {
+        max-width: 80px;
+    }
+}
