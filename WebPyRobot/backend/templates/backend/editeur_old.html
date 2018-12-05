@@ -69,7 +69,7 @@
                                      onclick="location.href='{% url "backend:editor" %}?script={{ script.pk }}'">
                                     <a class="black-text" href="{% url 'backend:editor' %}?script={{ script.pk }}">
                                         {{ script.name|truncatechars:20 }}</a>
-                                    <span class="new badge blue-grey yellow-text darken-4"
+                                    <span class="new badge indigo yellow-text darken-4"
                                           data-badge-caption="Actif"></span>
                                 </div>
                             {% endif %}
@@ -86,14 +86,14 @@
 
                     <form id="load" name="form_input" enctype="multipart/form-data">
                         <div class="file-field input-field">
-                            <div class="btn blue-grey darken-4">
+                            <div class="btn indigo darken-4">
                                 <span>Parcourir..</span><i class="material-icons right">search</i>
                                 <input id="myfile" type="file">
                             </div>
                             <div class="file-path-wrapper">
                                 <input id="name_file" class="file-path validate" type="text"
                                        placeholder="Charger un fichier">
-                                <button id="entrer" class="btn waves-effect waves-light blue-grey darken-4"
+                                <button id="entrer" class="btn waves-effect waves-light indigo darken-4"
                                         type="button">Charger
                                     <i class="material-icons right">file_download</i>
                                 </button>
@@ -206,30 +206,30 @@
                                 class="material-icons">menu</i></a>
                         <ul class="left hide-on-med-and-down">
                             <li class="save hoverable" value="Sauvegarder">
-                                <!--<a id="coucou_save" type="submit" class="blue-grey-text darken-4">
+                                <!--<a id="coucou_save" type="submit" class="indigo-text darken-4">
                                     SAUVEGARDER
                                 </a>-->
-                                <input id="coucou_save" type="submit" class="btn-flat blue-grey-text darken-4"
+                                <input id="coucou_save" type="submit" class="btn-flat indigo-text darken-4"
                                        name="action"
                                        value="Sauvegarder">
                             </li>
                             <li class="save hoverable" value="Activer">
-                                <!--<a id="coucou_active" type="submit" class="blue-grey-text darken-4">
+                                <!--<a id="coucou_active" type="submit" class="indigo-text darken-4">
                                     ACTIVER
                                 </a>-->
-                                <input type="submit" class="btn-flat blue-grey-text darken-4" name="action"
+                                <input type="submit" class="btn-flat indigo-text darken-4" name="action"
                                        value="Activer">
                             </li>
                             {% if not inBattle %}
                                 <li>
-                                    <!--<a class="blue-grey-text darken-4" href="{% url 'backend:versus' previous=1 %}">ENTRAÎNEMENT</a>-->
-                                    <a class="modal-trigger blue-grey-text darken-4" href="#versus">ENTRAÎNEMENT</a>
+                                    <!--<a class="indigo-text darken-4" href="{% url 'backend:versus' previous=1 %}">ENTRAÎNEMENT</a>-->
+                                    <a class="modal-trigger indigo-text darken-4" href="#versus">ENTRAÎNEMENT</a>
                                 </li>
                             {% endif %}
                         </ul>
                         <ul class="right hide-on-med-and-down">
                             <li class="hoverable">
-                                <a class="blue-grey-text darken-4 modal-trigger" href="#delete_script">SUPPRIMER LE CODE</a>
+                                <a class="indigo-text darken-4 modal-trigger" href="#delete_script">SUPPRIMER LE CODE</a>
                             </li>
                         </ul>
                     </div>
@@ -252,20 +252,20 @@
             </div>
             <ul class="side-nav" id="editor_menu">
                 <li class="save">
-                    <input type="submit" class="btn-flat blue-grey-text darken-4" name="action"
+                    <input type="submit" class="btn-flat indigo-text darken-4" name="action"
                            value="Sauvegarder">
                 </li>
                 <li class="save">
-                    <input type="submit" class="btn-flat blue-grey-text darken-4" name="action"
+                    <input type="submit" class="btn-flat indigo-text darken-4" name="action"
                            value="Activer">
                 </li>
                 {% if not inBattle %}
                     <li>
-                        <a class="waves-effect modal-trigger blue-grey-text darken-4" href="#versus">ENTRAÎNEMENT</a>
+                        <a class="waves-effect modal-trigger indigo-text darken-4" href="#versus">ENTRAÎNEMENT</a>
                     </li>
                 {% endif %}
                 <li>
-                    <a class="blue-grey-text darken-4 modal-trigger" href="#delete_script">SUPPRIMER LE CODE</a>
+                    <a class="indigo-text darken-4 modal-trigger" href="#delete_script">SUPPRIMER LE CODE</a>
                 </li>
             </ul>
         </form>
@@ -279,7 +279,7 @@
                     <h4>Entraînement - {{ championnat|truncatechars:50 }}</h4>
                     <p>Le code "{{ selected.name }}" servira d'entraînement face à ...</p>
                     <h4>Joueurs du championnat</h4>
-                    <nav class="blue-grey darken-4">
+                    <nav class="indigo darken-4">
                         <div class="nav-wrapper">
                             <form>
                                 <div class="input-field">
@@ -378,7 +378,7 @@
                                     <div class="collapsible-header">
                                         <i class="material-icons">insert_drive_file</i>
                                         {{ script.name|truncatechars:22 }}
-                                        <span class="new badge blue-grey yellow-text darken-4"
+                                        <span class="new badge indigo yellow-text darken-4"
                                               data-badge-caption="Actif"></span>
                                     </div>
                                     <!--<a class="btn-flat" onclick="window.location.href='/editor/?script={{ script.pk }}'">Modifier</a>-->
@@ -393,7 +393,7 @@
                        class="modal-action modal-close waves-effect waves-green btn-flat left">Aléatoire</a>
                     <input type="hidden" name="trigger_page" value="editor"/>
                     <input type="hidden" name="selected_pk_training" value="{{ selected.pk }}"/>
-                    <button id="player_select" class="btn waves-effect waves-light blue-grey darken-4" type="submit"
+                    <button id="player_select" class="btn waves-effect waves-light indigo darken-4" type="submit"
                             name="action" value="training">S'entraîner
                         <i class="material-icons right">play_arrow</i>
                     </button>

@@ -10,6 +10,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="{% static 'css/materialize.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
     <link href="{% static 'css/style.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link href="{% static 'css/newStyle.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet"
@@ -65,21 +66,21 @@
     </div>
 </main>
 
-<footer class="section" style="background-color: #1a237e">
     {% if pageIn == 'editor' %}
+    <footer class="section">
         <div class="container">
             <div class="row">
                 <div class="col s12 m6 l6">
                     <h4 class="yellow-text">Liens utiles</h4>
                     <ul>
                         <li>
-                            <a class="white-text" href="https://docs.python.org/3/" target="_blank"><i
+                            <a href="https://docs.python.org/3/" target="_blank"><i
                                     class="fab fa-python fa-lg"></i> Python</a>
                         </li>
-                        <li><a class="white-text" href="https://openclassrooms.com" target="_blank"><i
+                        <li><a href="https://openclassrooms.com" target="_blank"><i
                                 class="fab fa-opera fa-lg"></i>
                             Openclassrooms</a></li>
-                        <li><a href="https://www.w3schools.com/" class="white-text" target="_blank">
+                        <li><a href="https://www.w3schools.com/" target="_blank">
                             <i class="fas fa-graduation-cap fa-lg"></i>
                             w3schools</a></li>
                     </ul>
@@ -94,18 +95,10 @@
                 </div>
             </div>
         </div>
+    </footer>
     {% endif %}
-    <div class="footer-copyright">
-        {% include 'backend/legalNoticeContact.html' %}
-        <div class="container white-text center-align">
-            <a class="white-text modal-trigger left" href="#modal2"><i class="far fa-envelope"></i> Contact</a>
-            <i class="far fa-copyright"></i> 2017 design par <a class="white-text"
-                                                                href="https://github.com/AlexAndriamahaleo"
-                                                                target="_blank">BananiaStyle</a>.
-            <a class="white-text modal-trigger right" href="#modal1"><i class="fas fa-gavel"></i> Mentions Légales</a>
-        </div>
-    </div>
-</footer>
+
+    {% include 'backend/footer.html' %}
 
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 {#<script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>#}

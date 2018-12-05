@@ -45,4 +45,4 @@ urlpatterns = [
     url(r'^training/$', views.select_player_for_training, name='select_player_for_training'),
     url(r'^championship/$', views.select_player_for_championship, name='select_player_for_championship'),
     url(r'^delete_script/$', views.delete_script, name='delete_script'),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
