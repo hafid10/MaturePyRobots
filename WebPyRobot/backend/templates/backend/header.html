@@ -58,8 +58,8 @@
 
     <nav class="blue-grey darken-4" role="navigation">
         <div class="container nav-wrapper">
-            <a href="/" class="brand-logo yellow-text" onclick="window.location.href='/'">PyRobot</a>
             {% if pageIn != 'documentation' and pageIn != 'faq' and pageIn != 'tutoriels' %}
+                <a href="/" class="brand-logo yellow-text" onclick="window.location.href='/'">PyRobot</a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
                     <li>
                         <div class="yellow-text nav-elem" href="#">
@@ -86,6 +86,7 @@
                 </ul>
                 <a href="#" data-activates="main_menu" class="button-collapse"><i class="material-icons">menu</i></a>
             {% else %}
+                <a href="#" class="brand-logo yellow-text">PyRobot</a>
                 <ul class="right">
                     <li>
                         <a class="yellow-text" href="JavaScript:window.close()">

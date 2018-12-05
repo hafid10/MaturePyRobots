@@ -8,8 +8,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
     <title>Bienvenue sur PyRobot</title>
 
-    <link href="{% static 'css/newStyle.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
-
     {% include 'backend/head.html' %}
 
 </head>
@@ -203,6 +201,14 @@
 {% include 'backend/footer.html' %}
 
 </body>
+
+<!--  Scripts-->
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="{% static 'js/materialize.js' %}"></script>
+<script src="{% static 'js/init.js' %}"></script>
+<script src="{% static 'js/alertify.js' %}"></script>
+<script src="{% static 'js/fontawesome-all.js' %}"></script>
+
 <script>
     {% if error %}
         var errors = {{ error | safe }} ;
