@@ -4,19 +4,15 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
 
-class SignUpForm(UserCreationForm, forms.Form):
-    username = forms.CharField(label='Pseudo', max_length=150, required=True, widget=forms.TextInput(attrs={'class':'validate', 'data-length':'150'}), help_text='Lettres, chiffres et @ . + - _ sont autorisés.')
+class SignUpForm(UserCreationForm, forms.ModelForm):
+    """Class of form to register."""
+    username = forms.CharField(label='Pseudo',max_length=25, required=True, widget=forms.TextInput(attrs={'class':'validate', 'data-length':'25', 'id':'pseudo'}), help_text='Lettres, chiffres et @ . + - _')
     first_name = forms.CharField(label='Prénom',max_length=30, required=False)
     last_name = forms.CharField(label='Nom',max_length=30, required=False)
     # email = forms.EmailField(max_length=254,required=True, help_text='Requis. Renseignez une adresse valide.')
-    email = forms.EmailField(label='Email', required=True, widget=forms.TextInput(attrs={'class':'validate'}), help_text='Renseignez une adresse valide.')
-    password1 = forms.CharField(label='Mot de passe', required=True, widget=forms.PasswordInput, help_text="<ul>"
-                                                                                                           "<li>Votre mot de passe ne peut pas être trop similaire à vos autres informations personnelles.</li>"
-                                                                                                           "<li>Votre mot de passe doit contenir au moins 8 caractères.</li>"
-                                                                                                           "<li>Votre mot de passe ne peut pas être un mot de passe couramment utilisé.</li>"
-                                                                                                           "<li>Votre mot de passe ne peut pas être entièrement numérique.</li>"
-                                                                                                           "</ul>")
-    password2 = forms.CharField(label='Mot de passe (confirmation)', required=True, widget=forms.PasswordInput)
+    email = forms.EmailField(label='Email', required=True, widget=forms.TextInput(attrs={'class':'validate', 'type':'email'}))
+    password1 = forms.CharField(label='Mot de passe', required=True, widget=forms.PasswordInput(attrs={'id':'mdp1'}))
+    password2 = forms.CharField(label='Mot de passe (confirmation)', required=True, widget=forms.PasswordInput(attrs={'id':'mdp2'}))
 
     class Meta:
         model = User
