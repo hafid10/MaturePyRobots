@@ -11,7 +11,41 @@
     <link href="{% static 'css/newStyle.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
 
     {% include 'backend/head.html' %}
-
+<style>
+        #modalInscription span{
+            font-style: italic;
+            font-size: small;
+            margin-top: 0;
+        }
+        #modalInscription .modal-content {
+            padding: 5px;
+        }
+        #id_username{
+            margin-bottom:0;
+        }
+        #modalInscription h4{
+            font-style: normal;
+            font-weight: bold;
+            margin: 0 0 20px 0;
+            padding: 0;
+        }
+        #row {
+            margin-bottom: 0;
+        }
+        #modalInscription .input-field{
+            margin: 5px auto;
+        }
+        #modalInscription .modal-footer {
+            margin-top: 0;
+            padding-top: 0;
+        }
+        #mdp_diff {
+          color: red;
+          padding: 0 0 0 40px;
+          font-style: italic;
+          font-size: small;
+        }
+    </style>
 </head>
 <body>
 
@@ -74,7 +108,7 @@
 </div>
 <div id="modalInscription" class="modal">
     <div class="modal-content">
-        <form action="{% url 'backend:signup' %}" method="post">
+        <form action="{% url 'backend:signup' %}" method="post" onsubmit="return verifInscription(this);">
             {% csrf_token %}
             <h4>Inscription</h4>
             <div class="divider"></div><br>
@@ -150,6 +184,9 @@
                         {{ form.password2.help_text | safe }}
                       </span>
                     {% endif %}
+                    </div>
+                        <div id="mdp_diff" style="display:none">
+                    </div>
                 </div>
             </div>
             <div class="modal-footer">
@@ -225,5 +262,34 @@
     function closeModal() {
         $('#modalConnexion').modal();
     }
+     
+     // verification du formulaire d'inscription:
+    function verifInscription(f){
+      var mdp_diff = document.getElementById("mdp_diff");
+      var regex = /[\!\^\$\(\)\[\]\{\}\?\+\*\/\\\|\&\#\"\'\<\>\=\£\%\$\¤\µ\§\:\;\~]/;
+      var pseudo = document.getElementById("pseudo");
+      var mdp1 = document.getElementById("mdp1");
+      var mdp2 = document.getElementById("mdp2");
+
+      if(( mdp1.value != mdp2.value )&&(mdp_diff.style.display === "none")){
+        mdp_diff.innerHTML = "Vos mots de passe doivent être identiques.";
+        console.log(mdp1.value.length);
+        mdp_diff.style.display = "block";
+        return false;
+      } else if( pseudo.value.match(regex) != null ){
+        console.log("titi");
+        pseudo.style.color = 'red';
+        document.getElementById("help_pseudo").style.color = 'red';
+        return false;
+      } else if (mdp1.value.length<8){
+        mdp_diff.innerHTML = "Vos mots doivent être de 8 caractères minimum.";
+        mdp_diff.style.display = "block";
+        return false;
+      }
+      else {
+          return true;
+     }
+   }
+
 </script>
 </html>
