@@ -39,11 +39,12 @@ function searchPlayerVersus() {
 $('.tap-target').tapTarget('open');
 
 $('input[type="checkbox"]').on('change', function () {
-    $('input[type="checkbox"]').not(this).prop('checked', false);
+    var group = $(this).parent();
+    $(group).find('input[type="checkbox"]').not(this).prop('checked', false);
 });
 
-$('.player_check').click(function ()
+$('.player_check input[type="checkbox"]').on('change',function ()
 {
-    var checkbox = $(this).find('input[type=checkbox]');
-    checkbox.prop("checked", !checkbox.prop("checked"));
+    $('#selected-pk').val($(this).val());
+    $('.player_check').find('input[type="checkbox"]').not(this).prop('checked', false);
 });
