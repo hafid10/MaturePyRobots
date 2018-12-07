@@ -205,15 +205,15 @@
                                         <i class="material-icons">insert_drive_file</i>
                                         {{ script.name|truncatechars:22 }}
                                         <span class="badge">
-                                            <input type="checkbox" id="{{ script.pk }}_training" name="script_pk_training"
+                                            <input type="checkbox" id="{{ script.pk }}_training_script" name="script_pk_training"
                                                    value="/versus/0/{{ user.pk }}/{{ script.pk }}#{{ script.name }}"/>
-                                            <label for="{{ script.pk }}_training"></label>
+                                            <label for="{{ script.pk }}_training_script"></label>
                                         </span>
                                     </div>
                                     <!--<a class="btn-flat" onclick="window.location.href='/editor/?script={{ script.pk }}'">Modifier</a>-->
                                 </li>
                             {% else %}
-                                <li class="player_check">
+                                <li class="script_check">
                                     <div class="collapsible-header">
                                         <i class="material-icons">insert_drive_file</i>
                                         {{ script.name|truncatechars:22 }}
@@ -221,7 +221,7 @@
                                               data-badge-caption="Actif"></span>
                                           <span class="badge">
                                               <input type="checkbox" id="{{ script.pk }}_training" name="script_pk_training"
-                                                     value="/versus/0/{{ user.pk }}/{{ script.pk }}#{{ script.name }}"/>
+                                                     value="/versus/0/{{ user.pk }}/{{ script.pk }}#{{ script.name }}" checked/>
                                               <label for="{{ script.pk }}_training"></label>
                                           </span>
                                     </div>
@@ -353,7 +353,7 @@
                 fadeReplace(ia, player);
                 break;
             case 1:
-
+                $('#resultPlayerVersus input[type="checkbox"]').prop('checked', false);
                 fadeReplace(player, ia);
                 break;
             }
