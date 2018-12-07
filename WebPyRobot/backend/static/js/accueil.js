@@ -43,8 +43,7 @@ $('input[type="checkbox"]').on('change', function () {
     $(group).find('input[type="checkbox"]').not(this).prop('checked', false);
 });
 
-$('.player_check input[type="checkbox"]').on('change',function ()
+$('.select-script input[type="checkbox"]').on('change',function ()
 {
-    $('#selected-pk').val($(this).val());
-    $('.player_check').find('input[type="checkbox"]').not(this).prop('checked', false);
+    $('.select-script').find('input[type="checkbox"]').not(this).prop('checked', false);
 });

@@ -1344,5 +1344,3 @@ def delete_script(request):
         messages.error(request, "ERREUR SUPPRESSION DU CODE")
 
     return redirect(reverse('backend:editor'))
-
-

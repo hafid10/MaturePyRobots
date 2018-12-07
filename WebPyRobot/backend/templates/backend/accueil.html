@@ -196,8 +196,7 @@
                     </div>
 
                     <h4>Vos codes</h4>
-                    <ul class="collapsible player_check">
-                        <input id="selected-pk" type="hidden" name="selected_pk_training" value="{{ selected.pk }}"/>
+                    <ul class="collapsible select-script">
                         {% for script in scripts %}
 
                             {% if script.pk != active_script.pk %}
@@ -207,7 +206,7 @@
                                         {{ script.name|truncatechars:22 }}
                                         <span class="badge">
                                             <input type="checkbox" id="{{ script.pk }}_training" name="script_pk_training"
-                                                   value="{{ script.pk }}"/>
+                                                   value="/versus/0/{{ user.pk }}/{{ script.pk }}#{{ script.name }}"/>
                                             <label for="{{ script.pk }}_training"></label>
                                         </span>
                                     </div>
@@ -220,6 +219,11 @@
                                         {{ script.name|truncatechars:22 }}
                                         <span class="new badge blue-grey yellow-text darken-4"
                                               data-badge-caption="Actif"></span>
+                                          <span class="badge">
+                                              <input type="checkbox" id="{{ script.pk }}_training" name="script_pk_training"
+                                                     value="/versus/0/{{ user.pk }}/{{ script.pk }}#{{ script.name }}"/>
+                                              <label for="{{ script.pk }}_training"></label>
+                                          </span>
                                     </div>
                                     <!--<a class="btn-flat" onclick="window.location.href='/editor/?script={{ script.pk }}'">Modifier</a>-->
                                 </li>
