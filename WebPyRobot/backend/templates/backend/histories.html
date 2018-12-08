@@ -57,7 +57,7 @@
                             <td>{{ history.user.username }} ({{ history.used_script.name  }})</td>
                             <td class="hide-on-med-and-down">{{ history.opp_used_script.name}}</td>
                             <td>{% if history.is_victorious %}<i class="fas fa-thumbs-down red-text"></i>{% else %}<i class="fas fa-thumbs-up green-text"></i>{% endif %}</td>
-                            <td><a class="waves-effect waves-light blue-grey darken-4 yellow-text btn" href="{% url 'backend:replay' %}?bh_pk={{ history.pk }}">Voir</a></td>
+                            <td><a class="waves-effect waves-light blue-grey darken-4 yellow-text btn" href="{% url 'backend:replay' %}?bh_pk={{ history.pk }}">Revoir</a></td>
                             <td><a class="waves-effect waves-light blue-grey darken-4 yellow-text btn" onclick="window.location.href='/editor/?script={{ history.used_script.pk }}'">Modifier</a></td>
                             <td>{{ history.championship_name|truncatechars:25 }}</td>
                         {% endif %}
