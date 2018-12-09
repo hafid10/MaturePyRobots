@@ -1,4 +1,20 @@
 {% load static %}
+{% block custom_css %}
+    <style>
+      #lien_mail{
+        font-style: italic;
+        font-size: small;
+        text-align: right;
+      }
+      #lien_pseudo span{
+        font-weight: bold;
+        font-size: large;
+        color: yellow;
+        background: transparent;
+      }
+    </style>
+{% endblock %}
+
 <header class="col s12 m12 l12 navbar-fixed">
 
     <ul id="index2" class="dropdown-content center">
@@ -105,10 +121,14 @@
             <div class="background">
                 <img src="{% static 'img/black_wall.jpg' %}">
             </div>
-            <a href="#!name"><span class="white-text email">{{ user }}</span></a>
-            <a href="#!prenom"><span class="white-text name">{{ username.first_name }}</span></a>
-            <a href="#!nom"><span class="white-text email">{{ username.last_name }}</span></a>
-            <a href="#!email"><span class="white-text email">{{ mail }}</span></a>
+            <a id="lien_pseudo" onclick="window.location.href='/profile/'"><span class="btn">{{ user }}</span></a>
+            {% if username.first_name != null %}
+              <a href="#!prenom"><span class="white-text name">{{ username.first_name }}</span></a>
+            {% endif %}
+            {% if username.last_name != null %}
+              <a href="#!nom"><span class="white-text name">{{ username.last_name }}</span></a>
+            {% endif %}
+            <a id="lien_mail" href="#!email"><span class="white-text email">{{ mail }}</span></a>
             <a href="#!point"><span class="white-text name">{{ point }} <i class="fab fa-product-hunt fa-lg"></i></span></a>
             <a href="#!champ"><span class="white-text email"><i class="fas fa-trophy fa-lg"></i>
                 {{ championnat|truncatechars:50 }}</span></a>

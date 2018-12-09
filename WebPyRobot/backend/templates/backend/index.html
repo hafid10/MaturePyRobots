@@ -186,7 +186,7 @@
                 <div id="mdp_diff" style="display:none">
                 </div>
             </div>
-            
+
             <div class="modal-footer">
                 <input type="submit" value="S'inscrire" class=" modal-action waves-effect blue-grey darken-4 btn">
             </div>
@@ -268,7 +268,7 @@
     function closeModal() {
         $('#modalConnexion').modal();
     }
-     
+
      // verification du formulaire d'inscription:
     function verifInscription(f){
       var mdp_diff = document.getElementById("mdp_diff");
@@ -279,11 +279,9 @@
 
       if(( mdp1.value != mdp2.value )&&(mdp_diff.style.display === "none")){
         mdp_diff.innerHTML = "Vos mots de passe doivent être identiques.";
-        console.log(mdp1.value.length);
         mdp_diff.style.display = "block";
         return false;
       } else if( pseudo.value.match(regex) != null ){
-        console.log("titi");
         pseudo.style.color = 'red';
         document.getElementById("help_pseudo").style.color = 'red';
         return false;
