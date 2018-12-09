@@ -60,6 +60,9 @@
         $(".save").click(function (e) {
             $("#code").submit();
         });
+        $(".actif").click(function (e) {
+            $("#form_activer").submit();
+        });
 
         $("#entrer").click(function (e) {
             var file = document.getElementById('myfile');

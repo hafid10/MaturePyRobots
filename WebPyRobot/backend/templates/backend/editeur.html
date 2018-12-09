@@ -88,6 +88,30 @@
         #btn_validate{
           background: transparent;
         }
+        #form_activer i,i input{
+          padding: 0;
+          font-size: small;
+          width: 70px;
+          height: 28px;
+          border-radius: 5px;
+          vertical-align: top;
+          text-align: center;
+        }
+        .collection .collection-item.active {
+            background-color: #92E5EA;
+            color: #eafaf9;
+
+        }
+        .collection-item.active span{
+          font-size: small;
+          width: 70px;
+          height: 28px;
+          border-radius: 5px;
+          padding: 0;
+        }
+        #code nav div{
+          background-color: PaleTurquoise;
+        }
     </style>
 {% endblock %}
 
@@ -103,21 +127,33 @@
             <ul class="collection">
               {% for script in scripts %}
                   {% if script.pk != active_script.pk %}
-              <li class="collection-item {% if script.pk == selected.pk %} active {% endif %}">
+              <li class="row collection-item {% if script.pk == selected.pk %} active {% endif %}">
                   <div style="cursor: pointer"
                        onclick="location.href='{% url "backend:editor" %}?script={{ script.pk }}'">
+                    <div class="col s9 l9 m9">
                       <a class="black-text" href="{% url 'backend:editor' %}?script={{ script.pk }}">
                           {{ script.name|truncatechars:20 }}</a>
+                    </div>
+                    <div class="col s3 l3 m3">
+                      <form id="form_activer" action="{% url 'backend:editor' %}" method="post">
+                        {% csrf_token %}
+                        <input type="submit" class="actif btn waves-effect blue-grey darken-4" name="action" value="Activer">
+                        <input type="hidden" name="selected_pk" value="{{ script.pk }}"/>
+                      </form>
+                    </div>
                   </div>
               </li>
                   {% else %}
-              <li class="collection-item {% if script.pk == selected.pk %} active {% endif %}">
+              <li class="row collection-item {% if script.pk == selected.pk %} active {% endif %}">
                 <div style="cursor: pointer"
                      onclick="location.href='{% url "backend:editor" %}?script={{ script.pk }}'">
+                  <div class="col s9 l9 m9">
                     <a class="black-text" href="{% url 'backend:editor' %}?script={{ script.pk }}">
                         {{ script.name|truncatechars:20 }}</a>
-                    <span class="new badge blue-grey yellow-text darken-4"
-                          data-badge-caption="Actif"></span>
+                  </div>
+                  <div class="col s3 l3 m3">
+                    <span class="btn blue-grey yellow-text darken-4">Actif</span>
+                  </div>
                 </div>
               </li>
                   {% endif %}
@@ -262,7 +298,7 @@
 
                 </div>
                 <nav>
-                    <div class="nav-wrapper yellow lighten-2">
+                    <div class="nav-wrapper">
                         <a href="#" data-activates="editor_menu" class="button-collapse"><i
                                 class="material-icons">menu</i></a>
                         <ul class="left hide-on-med-and-down">
@@ -274,13 +310,6 @@
                                 <input id="coucou_save" type="submit" class="btn-flat blue-grey-text darken-4"
                                        name="action"
                                        value="Sauvegarder">
-                            </li>
-                            <li class="save hoverable" value="Activer">
-                                <!--<a id="coucou_active" type="submit" class="blue-grey-text darken-4">
-                                    ACTIVER
-                                </a>-->
-                                <input type="submit" class="btn-flat blue-grey-text darken-4" name="action"
-                                       value="Activer">
                             </li>
                             {% if not inBattle %}
                                 <li>
@@ -320,10 +349,6 @@
                 <li class="save">
                     <input type="submit" class="btn-flat blue-grey-text darken-4" name="action"
                            value="Sauvegarder">
-                </li>
-                <li class="save">
-                    <input type="submit" class="btn-flat blue-grey-text darken-4" name="action"
-                           value="Activer">
                 </li>
                 {% if not inBattle %}
                     <li>
@@ -444,8 +469,7 @@
                                     <div class="collapsible-header">
                                         <i class="material-icons">insert_drive_file</i>
                                         {{ script.name|truncatechars:22 }}
-                                        <span class="new badge blue-grey yellow-text darken-4"
-                                              data-badge-caption="Actif"></span>
+                                        <span class="new badge blue-grey yellow-text darken-4" data-badge-caption="Actif"></span>
                                     </div>
                                     <!--<a class="btn-flat" onclick="window.location.href='/editor/?script={{ script.pk }}'">Modifier</a>-->
                                 </li>
@@ -487,7 +511,7 @@
     <div class="container">
         <div class="row">
             <div class="col s12 m6 l6">
-                <h4 class="yellow-text">Liens utiles</h4>
+                <h4 class="">Liens utiles</h4>
                 <ul>
                     <li>
                         <a href="https://docs.python.org/3/" target="_blank"><i
