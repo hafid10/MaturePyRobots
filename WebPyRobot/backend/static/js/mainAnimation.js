@@ -148,15 +148,8 @@ var deadPlayer = function (player) {
         };
         if (socket2.readyState == WebSocket.OPEN) socket2.onopen();
 
-        //document.getElementById("fincombat").innerHTML = "<input class=\"waves-effect waves-light btn indigo darken-4 yellow-text\" type=\"submit\" name=\"action\" value=\"Voir l\'historique\"/>";
-        document.getElementById("fincombat").innerHTML = "<button class=\"btn waves-effect waves-light indigo darken-4 yellow-text\" type=\"submit\" name=\"action_2\" value=\"Voir l\'historique\" style=\"display: none\">Historique</button>";
-        document.getElementById("next_goto").innerHTML = "Aller vers...<i class=\"material-icons\">arrow_drop_down</i>";
-        document.getElementById("dropdown_fight").innerHTML = "<li><a onclick=\"window.location.href='/'\" class=\"indigo-text darken-4\"><i class=\"material-icons\">home</i> Accueil</a></li>\n" +
-            "                                                <li><a onclick=\"window.location.href='/battle-histories'\" class=\"indigo-text darken-4\"><i class=\"material-icons\">list</i> Historique</a></li>";
-        //document.getElementById("editer").innerHTML = "<input class=\"waves-effect waves-light btn indigo darken-4 yellow-text\" type=\"submit\" name=\"action\" value=\"Éditeur\"/>";
-        document.getElementById("editer").innerHTML = "<button class=\"btn waves-effect waves-light indigo darken-4 yellow-text\" type=\"submit\" name=\"action\" value=\"editeur\">Éditeur</button>";
-        //document.getElementById("editer").innerHTML = "<a class=\"waves-effect waves-light btn indigo darken-4 yellow-text\" onclick=\"window.location.href=\'/editor/\'\">Modifier</a>";
-        // TODO: change these input to button in Materialize
+        document.getElementById("editer").innerHTML = "<button class=\"btn waves-effect waves-light blue-grey darken-4 yellow-text\" type=\"submit\" name=\"action\" value=\"editeur\"><i class=\"material-icons\">create</i>Éditeur</button>";
+
     }
 };
 

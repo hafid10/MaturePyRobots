@@ -10,6 +10,14 @@
             max-width: 100%;
             height: auto;
         }
+        #pause{
+          background: transparent;
+        }
+        #editer a i, button i{
+          vertical-align: middle;
+          padding-bottom: 4px;
+          margin-right: 5px;
+        }
     </style>
 
 {% endblock %}
@@ -68,7 +76,7 @@
                     <div class="col s12 m12 l12">&nbsp;</div>
 
                     <div class="col s12 m8 offset-m2 l8 offset-l2">
-                        {% if not is_replay %}
+                        <!-- {% if not is_replay %} -->
                             <div class="row">
                                 <!--<div id="editer" class="col s12 m6 l6">
                                     <a id="logo-container" style="cursor:pointer" href="#pause"
@@ -83,30 +91,15 @@
                                         <input type="hidden" name="script_pk" value="{{ script_used }}"/>
                                         <input type="hidden" name="previous_page" value="{{ from_editor }}"/>
                                         <input type="hidden" name="action" value="historique" id="myaction"/>
-                                        <div id="editer" class="col s12 m6 l6">
-                                            <a id="logo-container" style="cursor:pointer" href="#pause"
-                                               class="waves-effect waves-light btn blue-grey darken-4 yellow-text modal-trigger">
-                                                <i class="material-icons left">pause_circle_outline</i>Pause</a>
-                                        </div>
-                                        <div id="redirect" class="col s12 m6 l6">
-                                            <a id="next_goto" class="dropdown-button btn waves-effect waves-light blue-grey darken-4 yellow-text" href="#" data-beloworigin="true" data-activates="dropdown_fight">Terminer<i class="material-icons">arrow_drop_down</i></a>
-                                            <ul id="dropdown_fight" class="dropdown-content">
-                                                <li><a id="accueil_button" class="blue-grey-text darken-4"><i class="material-icons">home</i> Accueil</a></li>
-                                                <li><a id="historic_button" class="blue-grey-text darken-4"><i class="material-icons">list</i> Historique</a></li>
-                                                <li><a id="editor_button" class="blue-grey-text darken-4"><i class="material-icons">edit</i> Éditeur</a></li>
-                                            </ul>
-                                        </div>
-                                        <div id="fincombat" class="col s12 m12 l6">
-                                            <button class="btn waves-effect waves-light blue-grey darken-4 yellow-text finish"
-                                                    type="submit" name="action_2" value="Terminer le combat" style="display: none">
-                                                Terminer le combat
-                                            </button>
-
+                                        <div id="editer" class="col s12 m12 l12 offset-l3">
+                                          <a id="accueil_button" class="btn waves-effect waves-light blue-grey darken-4 yellow-text finish">
+                                            <i class="material-icons">home</i> Terminer
+                                          </a>
                                         </div>
                                     </form>
                                 </div>
                             </div>
-                        {% else %}
+                        <!-- {% else %}
                             <div class="row">
                                 <div class="col l8 offset-l2">
                                     <div id="editer" class="col s12 m12 l6">
@@ -120,27 +113,8 @@
                                     </div>
                                 </div>
                             </div>
-                        {% endif %}
+                        {% endif %} -->
                     </div>
-                </div>
-            </div>
-            <div id="pause" class="modal modal-fixed-footer">
-                <div class="modal-content">
-                    <h4>Pause</h4>
-                    <p>Vous êtes sur le point de mettre votre battle sur [PAUSE].</p>
-                    <p>Vous allez retourner à la page d'accueil.</p>
-                    <p>
-                        Tant que le combat ne sera pas terminé vous ne pourrez pas démarrer d'autre battle (en mode
-                        VERSUS
-                        ou en mode CHAMPIONNAT) face à un autre joueur.
-                    </p>
-                    <p>Cliquer sur terminer le combat pour voir le résultat de la battle sans attendre la fin de
-                        l'animation.</p>
-                </div>
-                <div class="modal-footer">
-                    <a href="{% url 'backend:index' %}"
-                       class="modal-action modal-close waves-effect waves-green btn-flat ">Continuer</a>
-                    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Retour</a>
                 </div>
             </div>
         {% endif %}
