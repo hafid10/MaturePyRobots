@@ -148,7 +148,7 @@ var deadPlayer = function (player) {
         };
         if (socket2.readyState == WebSocket.OPEN) socket2.onopen();
 
-        document.getElementById("editer").innerHTML = "<button class=\"btn waves-effect waves-light blue-grey darken-4 yellow-text\" type=\"submit\" name=\"action\" value=\"editeur\"><i class=\"material-icons\">create</i>Éditeur</button>";
+        document.getElementById("editer").innerHTML = "<a id=\"editor_button\" class=\"btn waves-effect waves-light blue-grey darken-4 yellow-text\" onclick=\"window.location.href='/editor/'\"><i class=\"material-icons\">edit</i> Éditeur</a>";
 
     }
 };
