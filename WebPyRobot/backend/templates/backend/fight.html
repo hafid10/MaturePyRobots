@@ -86,7 +86,6 @@
                                         <input type="hidden" name="history_pk" value="{{ history_pk }}"/>
                                         <input type="hidden" name="mode" value="{{ is_versus }}"/>
                                         <input type="hidden" name="script_pk" value="{{ script_used }}"/>
-                                        <input type="hidden" name="previous_page" value="{{ from_editor }}"/>
                                         <input type="hidden" name="action" value="historique" id="myaction"/>
                                         <div id="editer" class="col s12 m12 l12 offset-l3">
                                           <a id="accueil_button" class="btn waves-effect waves-light blue-grey darken-4 yellow-text finish">
@@ -145,18 +144,18 @@
             });
 
 
-            $('#historic_button').click(function () {
-                $('#myaction').attr({
-                    "value":"historique"
-                });
-                $('#end_battle').submit()
-            });
+            // $('#historic_button').click(function () {
+            //     $('#myaction').attr({
+            //         "value":"historique"
+            //     });
+            //     $('#end_battle').submit()
+            // });
 
             $('#editor_button').click(function () {
                 $('#myaction').attr({
                     "value":"editeur"
                 });
-                $('#end_battle').submit()
+                // $('#end_battle').submit()
             });
 
 

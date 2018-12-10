@@ -1064,7 +1064,7 @@ def finish_battle(request):
         mode = request.POST.get('mode')
         script = request.POST.get('script_pk')
         action = request.POST.get('action')
-        previous_page = request.POST.get('previous_page')
+        # previous_page = request.POST.get('previous_page')
 
         if BattleHistory.objects.filter(pk=bh_pk).exists():
             battle = BattleHistory.objects.get(pk=bh_pk)
@@ -1100,17 +1100,18 @@ def finish_battle(request):
                 battle.is_finished = True
                 battle.save()
 
-            if action == "editeur" or previous_page == 'True':
-                battle_run = current_user.get_running_battle()
-                if battle_run:
-                    battle = BattleHistory.objects.get(pk=bh_pk)
-                    battle.is_finished = True
-                    battle.save()
-                battle.is_finished = True
-                battle.save()
-                return redirect("/editor/?script=" + script)
-
-            elif action == "accueil":
+            # if action == "editeur" or previous_page == 'True':
+            #     battle_run = current_user.get_running_battle()
+            #     if battle_run:
+            #         battle = BattleHistory.objects.get(pk=bh_pk)
+            #         battle.is_finished = True
+            #         battle.save()
+            #     battle.is_finished = True
+            #     battle.save()
+            #     return redirect("/editor/?script=" + script)
+            #
+            # el
+            if action == "accueil":
                 battle_run = current_user.get_running_battle()
                 if battle_run:
                     battle = BattleHistory.objects.get(pk=bh_pk)
@@ -1344,5 +1345,3 @@ def delete_script(request):
         messages.error(request, "ERREUR SUPPRESSION DU CODE")
 
     return redirect(reverse('backend:editor'))
-
-

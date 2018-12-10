@@ -66,10 +66,10 @@ var contraint = 36 / (Math.min(winHieght, winWidth) / 36);
 // }
 var map = new Map(map_name, contraint);
 
-var player1 = new Player("tank1.png", player_x, player_y, STATE.DOWN, contraint, playername);
+var player1 = new Player("tank3.png", player_x, player_y, STATE.DOWN, contraint, playername);
 map.addPlayer(player1);
 
-var player2 = new Player("tank2.png", opponent_x, opponent_y, STATE.UP, contraint, opponent);
+var player2 = new Player("tank4.png", opponent_x, opponent_y, STATE.UP, contraint, opponent);
 map.addPlayer(player2);
 
 
