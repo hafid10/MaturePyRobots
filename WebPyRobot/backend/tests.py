@@ -249,7 +249,7 @@ class TestUrls(SimpleTestCase, TestCase):
     def test_faq(self):
         pass
         # response = self.client.get(reverse('backend:faq'))
-        # self.assertEqual(response.status_code, 200)
+        # self.assertEqual(response.status_code, 200)  
 
     def test_tutoriel(self):
         response = self.client.get(reverse('backend:tutoriels'), follow=True)
@@ -262,6 +262,5 @@ class TestUrls(SimpleTestCase, TestCase):
 
     def test_finish_battle(self):
         response = self.client.get(reverse('backend:finish_battle'), follow=True)
-        # print("\n\n{}\n\n".format(response.redirect_chain[0]))
         self.assertRedirects(response, expected_url='/login/?next=/finish-battle/', status_code=302,
                              target_status_code=200)

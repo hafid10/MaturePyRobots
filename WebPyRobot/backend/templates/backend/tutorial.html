@@ -15,7 +15,7 @@
                 </div>
                 <div class="collapsible-body">
                     <video class="responsive-video materialboxed" autoplay="autoplay" controls="controls" controlsList="nodownload">
-                        <source src="{% static 'img/tutoriel/tuto_accueil_pyrobot.mp4' %}" type="video/mp4">
+                        <source src="{% static 'img/tutoriel/tuto.mp4' %}" type="video/mp4" preload="auto" controls>
                         Votre navigateur internet ne supporte pas la balise vidéo HTML version 5
                     </video>
                 </div>
@@ -27,19 +27,42 @@
                 </div>
                 <div class="collapsible-body">
                     <video class="responsive-video materialboxed" controls="controls" autoplay="autoplay">
-                        <source src="{% static 'img/tutoriel/tuto_accueil_pyrobot.mp4' %}" type="video/mp4">
+                        <source src="{% static 'img/tutoriel/tuto.mp4' %}" type="video/mp4">
                         Votre navigateur internet ne supporte pas la balise vidéo HTML version 5
                     </video>
                 </div>
             </li>
-           <!--<li>
-                <div class="collapsible-header"><i class="material-icons">priority_high</i>Informations utiles</div>
-                <div class="collapsible-body"><span>En cours de construction</span></div>
+           <li>
+                <div class="collapsible-header">
+                    <i class="material-icons">priority_high
+                    </i>Informations utiles</div>
+                <div class="collapsible-body">
+                    <span>Crée une boucle <br>
+                        <span>L'idée est de répéter x fois une touche </span><br>
+                        <span>code : </span><br><br>
+                        i = 0 #Initialisation de la boucle<br>
+                        x = 10 # Nombre de fois qu'on veux efectuer la boucle<br>
+                        while i < x: # Début de la boucle, ce qui suis est répété x fois<br>
+                            <dd>#Action voulus</dd>
+                           <dd> i = i+1 # On incrémente notre i<br></dd>
+                    </span>
+                    <br>
+                    <span>
+                    Crée une condtion <br>
+                        <span>L'idée est de dire si telle variable est a une telle valeur alors faire cela sinon cela.</span><br>
+                        <span></span>
+                        a = 10 <br>
+                        if a > 5: #On met ici une condition, on regarde la variable a, si elle est plus grande que 5 on fais le code en dessous<br>
+                            <dd>a = a+1</dd>
+                    
+                    
+                    </span>
+               </div>
             </li>
-            <li>
+           <!-- <li>
                 <div class="collapsible-header"><i class="material-icons">pause</i>Pause battle ?</div>
                 <div class="collapsible-body"><span>Voulez-vous un tuto pour le Bouton "Pause" ?</span></div>
-            </li>-->
+        </li>-->
         </ul>
     </div>
 {% endblock %}
