@@ -125,13 +125,10 @@
                         <div class="col s12 m4 l4">
                             <h4 class="center vertical-center">VS<h4>
                         </div>
-                        <div class="col s12 m4 l4">
-
-                        </div>
-                    </div>
-                    <div id="versus-select" class="row">
-                        <div class="checkbox-group align-center">
-                            <input name="optionSelect" id="player" type="checkbox" value="0" checked/><label for="player">Joueur</label><input name="optionSelect" id="ia" type="checkbox" value="1"/><label for="ia">IA</label>
+                        <div id="versus-select" class="col s12 m4 l4" style="margin-top: 50px;">
+                            <div class="checkbox-group align-center">
+                                <input name="optionSelect" id="player" type="checkbox" value="0" checked/><label for="player">Joueur</label><input name="optionSelect" id="ia" type="checkbox" value="1"/><label for="ia">IA</label>
+                            </div>
                         </div>
                     </div>
                     <div id="player-select" class="row choice-panel">
@@ -189,37 +186,23 @@
                         </div>
                     </div>
 
-                    <h4>Vos codes</h4>
-                    <ul class="collapsible">
+                    <h4>Votre code actif</h4>
+                    <div class="row center">
+                        <div class="col s6 m6 l6">
+                            <img src="/static/img/file-icon.png" alt=""
+                                 class="align-center responsive-img materialboxed" width="100">
+                        </div>
                         {% for script in scripts %}
 
-                            {% if script.pk != active_script.pk %}
-                                <li class="player_check">
-                                    <div class="collapsible-header">
-                                        <i class="material-icons">insert_drive_file</i>
-                                        {{ script.name|truncatechars:22 }}
-                                        <span class="badge">
-                                            <input type="checkbox" id="{{ script.pk }}_training" name="check_training"
-                                                   value="/versus/0/{{ user.pk }}/{{ script.pk }}#{{ script.name }}"/>
-                                            <label for="{{ script.pk }}_training"></label>
-                                        </span>
-                                    </div>
-                                    <!--<a class="btn-flat" onclick="window.location.href='/editor/?script={{ script.pk }}'">Modifier</a>-->
-                                </li>
-                            {% else %}
-                                <li class="player_check">
-                                    <div class="collapsible-header">
-                                        <i class="material-icons">insert_drive_file</i>
-                                        {{ script.name|truncatechars:22 }}
-                                        <span class="new badge blue-grey yellow-text darken-4"
-                                              data-badge-caption="Actif"></span>
-                                    </div>
-                                    <!--<a class="btn-flat" onclick="window.location.href='/editor/?script={{ script.pk }}'">Modifier</a>-->
-                                </li>
+                            {% if script.pk == active_script.pk %}
+                                <div class="col s6 m6 l6">
+                                    <p>{{ script.name|truncatechars:22 }}</p>
+                                    <a class="btn-flat" onclick="window.location.href='/editor/?script={{ script.pk }}'">Modifier</a>
+                                </div>
                             {% endif %}
 
                         {% endfor %}
-                    </ul>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <a onclick="window.location.href='/versus/0/'"
