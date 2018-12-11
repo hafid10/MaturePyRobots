@@ -38,8 +38,12 @@ function searchPlayerVersus() {
 
 $('.tap-target').tapTarget('open');
 
-$('input[type="checkbox"]').on('change', function () {
-    $('input[type="checkbox"]').not(this).prop('checked', false);
+$('#ia-select input[type="checkbox"]').on('change', function () {
+    $('#ia-select input[type="checkbox"]').not(this).prop('checked', false);
+});
+
+$('#versus-select input[type="checkbox"]').on('change', function () {
+    $('#versus-select input[type="checkbox"]').not(this).prop('checked', false);
 });
 
 $('.player_check').click(function ()

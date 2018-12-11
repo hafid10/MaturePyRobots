@@ -119,7 +119,7 @@
                 <div class="modal-content">
                     <h4>Entraînement</h4>
                     <div class="divider"></div><br>
-                    <div class="row">
+                    <div class="row header_training">
                         <div class="col s12 m4 l4">
                             <img src="/static/img/user_avatar/default.png" alt="{{ current_user.avatar }}"
                                  class="align-center responsive-img circle materialboxed" width="100">
@@ -129,18 +129,12 @@
                             <h4 class="center vertical-center">VS<h4>
                         </div>
                         <div class="col s12 m4 l4">
-                            <div class="col s6 m12 l12 align-center btn-choice">
-                                <a onClick="optionSelect(0)">
-                                    <img class="img-responsive align-center" src="/static/img/user.svg" width=100%/>
-                                    <p class="center">Joueur</p>
-                                </a>
-                            </div>
-                            <div class="col s6 m12 l12 align-center btn-choice">
-                                <a onClick="optionSelect(1)">
-                                    <img class="img-responsive align-center" src="/static/img/laptop.svg" width=100%/>
-                                    <p class="center">IA</p>
-                                </a>
-                            </div>
+
+                        </div>
+                    </div>
+                    <div id="versus-select" class="row">
+                        <div class="checkbox-group align-center">
+                            <input name="optionSelect" id="player" type="checkbox" value="0" checked/><label for="player">Joueur</label><input name="optionSelect" id="ia" type="checkbox" value="1"/><label for="ia">IA</label>
                         </div>
                     </div>
                     <div id="player-select" class="row choice-panel">
@@ -351,7 +345,6 @@
                 fadeReplace(ia, player);
                 break;
             case 1:
-
                 fadeReplace(player, ia);
                 break;
             }
@@ -363,6 +356,11 @@
                 div2.fadeIn(500);
             });
         }
+
+        $('input[name="optionSelect"]').on('change', function() {
+            var val = parseInt($(this).val());
+            optionSelect(val);
+        })
 
         $(document).ready(function(){
             $("#ia-select").animate({
