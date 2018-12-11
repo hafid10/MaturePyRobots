@@ -80,16 +80,6 @@ a {
     font-size: 50px !important;
 }
 
-.btn-choice {
-    height: 100px;
-    width: 100px;
-    cursor: pointer;
-    border-radius: 5px;
-    border: 2px solid #c6c6c6;
-}
-.btn-choice:checked {
-    background-color: #c6c6c6;
-}
 #versus .img-responsive {
     max-width: 100px;
 }
@@ -98,6 +88,7 @@ a {
 .checkbox-group {
     position: relative;
     border: 3px solid #c6c6c6;
+    font-weight: bold;
 }
 .checkbox-group input {
     position: absolute;
@@ -130,9 +121,6 @@ label + input[type="checkbox"] + label {
     }
     .bienvenue {
         font-size: 4em;
-    }
-    .header_training {
-        display: none;
     }
     #logo-container {
         display: none;
