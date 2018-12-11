@@ -168,7 +168,6 @@
                                                     <span class="badge">
                                                         <input type="checkbox" id="{{ player.pk }}_training" name="check_training"
                                                                value="/versus/0/{{ player.pk }}"/>
-                                                        <!--<input type="hidden" name="player" value="{{ player.pk }}"/>-->
                                                         <label for="{{ player.pk }}_training"></label>
                                                     </span>
                                                 </div>
@@ -197,7 +196,7 @@
                             {% if script.pk == active_script.pk %}
                                 <div class="col s6 m6 l6">
                                     <p>{{ script.name|truncatechars:22 }}</p>
-                                    <a class="btn-flat" onclick="window.location.href='/editor/?script={{ script.pk }}'">Modifier</a>
+                                    <a class="btn blue-grey darken-4" onclick="window.location.href='/editor/?script={{ script.pk }}'">Modifier</a>
                                 </div>
                             {% endif %}
 
