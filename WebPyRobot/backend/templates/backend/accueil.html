@@ -116,7 +116,7 @@
                 <div class="modal-content">
                     <h4>Entraînement</h4>
                     <div class="divider"></div><br>
-                    <div class="row">
+                    <div class="row header_training">
                         <div class="col s12 m4 l4">
                             <img src="/static/img/user_avatar/default.png" alt="{{ current_user.avatar }}"
                                  class="align-center responsive-img circle materialboxed" width="100">
@@ -126,18 +126,12 @@
                             <h4 class="center vertical-center">VS<h4>
                         </div>
                         <div class="col s12 m4 l4">
-                            <div class="col s6 m12 l12 align-center btn-choice">
-                                <a onClick="optionSelect(0)">
-                                    <img class="img-responsive align-center" src="/static/img/user.svg" width=100%/>
-                                    <p class="center">Joueur</p>
-                                </a>
-                            </div>
-                            <div class="col s6 m12 l12 align-center btn-choice">
-                                <a onClick="optionSelect(1)">
-                                    <img class="img-responsive align-center" src="/static/img/laptop.svg" width=100%/>
-                                    <p class="center">IA</p>
-                                </a>
-                            </div>
+
+                        </div>
+                    </div>
+                    <div id="versus-select" class="row">
+                        <div class="checkbox-group align-center">
+                            <input name="optionSelect" id="player" type="checkbox" value="0" checked/><label for="player">Joueur</label><input name="optionSelect" id="ia" type="checkbox" value="1"/><label for="ia">IA</label>
                         </div>
                     </div>
                     <div id="player-select" class="row choice-panel">
@@ -196,34 +190,29 @@
                     </div>
 
                     <h4>Vos codes</h4>
-                    <ul class="collapsible select-script">
+                    <ul class="collapsible">
                         {% for script in scripts %}
 
                             {% if script.pk != active_script.pk %}
-                                <li>
+                                <li class="player_check">
                                     <div class="collapsible-header">
                                         <i class="material-icons">insert_drive_file</i>
                                         {{ script.name|truncatechars:22 }}
                                         <span class="badge">
-                                            <input type="checkbox" id="{{ script.pk }}_training_script" name="script_pk_training"
+                                            <input type="checkbox" id="{{ script.pk }}_training" name="check_training"
                                                    value="/versus/0/{{ user.pk }}/{{ script.pk }}#{{ script.name }}"/>
-                                            <label for="{{ script.pk }}_training_script"></label>
+                                            <label for="{{ script.pk }}_training"></label>
                                         </span>
                                     </div>
                                     <!--<a class="btn-flat" onclick="window.location.href='/editor/?script={{ script.pk }}'">Modifier</a>-->
                                 </li>
                             {% else %}
-                                <li class="script_check">
+                                <li class="player_check">
                                     <div class="collapsible-header">
                                         <i class="material-icons">insert_drive_file</i>
                                         {{ script.name|truncatechars:22 }}
                                         <span class="new badge blue-grey yellow-text darken-4"
                                               data-badge-caption="Actif"></span>
-                                          <span class="badge">
-                                              <input type="checkbox" id="{{ script.pk }}_training" name="script_pk_training"
-                                                     value="/versus/0/{{ user.pk }}/{{ script.pk }}#{{ script.name }}" checked/>
-                                              <label for="{{ script.pk }}_training"></label>
-                                          </span>
                                     </div>
                                     <!--<a class="btn-flat" onclick="window.location.href='/editor/?script={{ script.pk }}'">Modifier</a>-->
                                 </li>
@@ -353,7 +342,6 @@
                 fadeReplace(ia, player);
                 break;
             case 1:
-                $('#resultPlayerVersus input[type="checkbox"]').prop('checked', false);
                 fadeReplace(player, ia);
                 break;
             }
@@ -365,6 +353,11 @@
                 div2.fadeIn(500);
             });
         }
+
+        $('input[name="optionSelect"]').on('change', function() {
+            var val = parseInt($(this).val());
+            optionSelect(val);
+        })
 
         $(document).ready(function(){
             $("#ia-select").animate({
