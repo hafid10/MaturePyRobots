@@ -23,6 +23,84 @@
         h5{
           text-align: center;
         }
+        #versus-select{
+          vertical-align: top;
+        }
+        #versus-select label{
+          position: relative;
+        }
+        #versus-select label::before,
+        #versus-select label + #versus-select input + #versus-select label
+        {
+          border: none;
+          border-left: none;
+        }
+        #label_player img{
+          position: absolute;
+          left: 0;
+          top: 3px;
+          z-index: 200;
+        }
+        #label_player span{
+          position: absolute;
+          left: -10px;
+          top: 177px;
+          z-index: 200;
+        }
+        #label_ia {
+          text-align: right;
+        }
+        #label_ia span,
+        #label_player span {
+          color: black;
+          font-weight: bold;
+          font-size: 1.5em;
+        }
+        #label_ia img{
+          border-radius: 15px;
+        }
+        #div_user img{
+          margin-top: 50px;
+        }
+        #div_user p{
+          margin-bottom: 30px;
+          font-weight: bold;
+        }
+        #form_activer i,i input{
+          padding: 0;
+          font-size: small;
+          width: 70px;
+          height: 28px;
+          border-radius: 5px;
+          vertical-align: top;
+          text-align: center;
+        }
+        #div_user p{
+          font-size: 1.5em;
+        }
+        #img_vs{
+          margin-left: 30%;
+          margin-top: 30%;
+        }
+        #code_actif div{
+          padding: 0;
+        }
+        #code_actif p{
+          color: blue;
+          font-size: 2em;;
+          font-weight: bold;
+        }
+        #code_actif .collapsible-header{
+          padding: 0 0 0 70px;
+        }
+        #code_actif .collapsible-header h4{
+          height: 50px;
+          margin: 0;
+          margin-top: 10px;
+        }
+        #code_actif .collapsible-header i{
+          font-size: 1.5em;
+        }
     </style>
 
 {% endblock %}
@@ -52,7 +130,6 @@
             </div>
         {% endif %}
     </div>
-
     <div class="col s12 m4 l4">
         <div class="col s6 m12 l12">
             <div class="border-spaced">
@@ -120,17 +197,27 @@
                     <h4>Entraînement</h4>
                     <div class="divider"></div><br>
                     <div class="row header_training">
-                        <div class="col s12 m4 l4">
+                        <div id="div_user" class="col s12 m3 l3">
                             <img src="/static/img/user_avatar/default.png" alt="{{ current_user.avatar }}"
                                  class="align-center responsive-img circle materialboxed" width="100">
                             <p class="center">{{ user.username }}</p>
                         </div>
                         <div class="col s12 m4 l4">
-                            <h4 class="center vertical-center">VS<h4>
+                            <!-- <h4 class="center vertical-center" style="padding-top:25px">VS<h4> -->
+                            <img id="img_vs" src="/static/img/Vs.png" alt="joueur" height="80" width="55">
                         </div>
-                        <div id="versus-select" class="col s12 m4 l4" style="margin-top: 50px;">
-                            <div class="checkbox-group align-center">
-                                <input name="optionSelect" id="player" type="checkbox" value="0" checked/><label for="player">Joueur</label><input name="optionSelect" id="ia" type="checkbox" value="1"/><label for="ia">IA</label>
+                        <div id="versus-select" class="col s12 m4 l4" >
+                            <div>
+                                <input name="optionSelect" id="player" type="checkbox" value="0" checked  autocomplete="off"/>
+                                <label id="label_player" for="player" >
+                                  <img src="/static/img/joueur2.png" alt="joueur" height="180" width="120">
+                                  <span>JOUEUR</span>
+                                </label>
+                                <input name="optionSelect" id="ia" type="checkbox" value="1"  autocomplete="off"/>
+                                <label id="label_ia" for="ia" style="border-left: none;">
+                                  <img src="/static/img/ia2.png" alt="joueur" height="140" width="200">
+                                  <span>I.A.</span>
+                                </label>
                             </div>
                         </div>
                     </div>
@@ -188,23 +275,62 @@
                         </div>
                     </div>
 
-                    <h4>Votre code actif</h4>
-                    <div class="row center">
-                        <div class="col s6 m6 l6">
+                    <div class="row" id="code_actif">
+                      <h4>Votre code actif</h4>
+                        <div class="col s6 offset-m1 m2 offset-l1 l2">
                             <img src="/static/img/file-icon.png" alt=""
                                  class="align-center responsive-img materialboxed" width="100">
                         </div>
                         {% for script in scripts %}
 
                             {% if script.pk == active_script.pk %}
-                                <div class="col s6 m6 l6">
+                                <div class="col s6 m2 l2">
                                     <p>{{ script.name|truncatechars:22 }}</p>
-                                    <a class="btn blue-grey darken-4" onclick="window.location.href='/editor/?script={{ script.pk }}'">Modifier</a>
+                                    <!-- <a class="btn blue-grey darken-4" onclick="window.location.href='/editor/?script={{ script.pk }}'">Modifier</a> -->
                                 </div>
                             {% endif %}
 
                         {% endfor %}
+                        <div class="col m1 l1"></div>
+                        <div class="col s12 m6 l6">
+                          <ul class="col l12 s12 m12 collapsible  waves-effect blue-grey darken-4" data-collapsible="accordion">
+                            <li>
+                              <div class="collapsible-header">
+                                  <h4><i class="material-icons right">arrow_drop_down</i>Modifier</h4>
+                              </div>
+                              <div class="collapsible-body">
+                                <ul class="collection">
+                                  {% for script in scripts %}
+                                      {% if script.pk != active_script.pk %}
+                                  <li class="row collection-item {% if script.pk == selected.pk %} active {% endif %}">
+                                      <div style="cursor: pointer">
+                                        <div class="col s8 l8 m8">
+                                          <span class="blue-text">
+                                              {{ script.name|truncatechars:20 }}
+                                          </span>
+                                        </div>
+                                        <div class="col s4 l4 m4">
+                                          <form id="form_activer" action="{% url 'backend:editor' %}" method="post">
+                                            {% csrf_token %}
+                                            <input type="submit" class="actif btn waves-effect blue-grey darken-4" name="action" value="Activer">
+                                            <input type="hidden" name="selected_pk" value="{{ script.pk }}"/>
+                                          </form>
+                                        </div>
+                                      </div>
+                                  </li>
+
+                                      {% endif %}
+                                  {% endfor %}
+                                </ul>
+                              </div>
+                            </li>
+                          </ul>
+                        </div>
                     </div>
+
+
+
+
                 </div>
                 <div class="modal-footer">
                     <a onclick="window.location.href='/versus/0/'"
@@ -349,5 +475,8 @@
                 height: 'toggle'
             });
         });
+
+
+
     </script>
 {% endblock %}

@@ -994,7 +994,6 @@ class AIScriptView(LoginRequiredMixin, ListView):
 
     def post(self, request, *args, **kwargs):
         action = self.request.POST.get("action")
-
         # print("DEBUG EDITOR: %s " % action)
 
         # When user clicks on Sauvgarder button

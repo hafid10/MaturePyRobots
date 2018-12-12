@@ -51,3 +51,8 @@ $('.player_check').click(function ()
     var checkbox = $(this).find('input[type=checkbox]');
     checkbox.prop("checked", !checkbox.prop("checked"));
 });
+
+$(".actif").click(function (e) {
+    // $("help").innerHTML="titis";
+    $("#form_activer").submit();
+});

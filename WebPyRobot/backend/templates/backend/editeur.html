@@ -21,6 +21,73 @@
 
 
     <style>
+        #versus-select{
+          vertical-align: top;
+        }
+        #versus-select label{
+          position: relative;
+        }
+        #versus-select label::before,
+        #versus-select label + #versus-select input + #versus-select label
+        {
+          border: none;
+          border-left: none;
+        }
+        #label_player img{
+          position: absolute;
+          left: 0;
+          top: 3px;
+          z-index: 200;
+        }
+        #label_player span{
+          position: absolute;
+          left: -10px;
+          top: 177px;
+          z-index: 200;
+        }
+        #label_ia {
+          text-align: right;
+        }
+        #label_ia span,
+        #label_player span {
+          color: black;
+          font-weight: bold;
+          font-size: 1.5em;
+        }
+        #label_ia img{
+          border-radius: 15px;
+        }
+        #div_user img{
+          margin-top: 50px;
+        }
+        #div_user p{
+          margin-bottom: 30px;
+          font-weight: bold;
+          font-size: 1.5em;
+        }
+        #img_vs{
+          margin-left: 30%;
+          margin-top: 30%;
+        }
+        #code_actif div{
+          padding: 0;
+        }
+        #code_actif p{
+          color: blue;
+          font-size: 2em;;
+          font-weight: bold;
+        }
+        #code_actif .collapsible-header{
+          padding: 0 0 0 70px;
+        }
+        #code_actif .collapsible-header h4{
+          height: 50px;
+          margin: 0;
+          margin-top: 10px;
+        }
+        #code_actif .collapsible-header i{
+          font-size: 1.5em;
+        }
         .btn:hover {
             background-color: #388e3c;
         }
@@ -108,6 +175,8 @@
           height: 28px;
           border-radius: 5px;
           padding: 0;
+          color: yellow;
+          line-height: 27px;
         }
         #code nav div{
           background-color: PaleTurquoise;
@@ -367,124 +436,150 @@
             <div>
                 {% csrf_token %}
                 <div class="modal-content">
-                    <h4>Entraînement - {{ championnat|truncatechars:50 }}</h4>
-                    <p>Le code "{{ selected.name }}" servira d'entraînement face à ...</p>
-                    <h4>Joueurs du championnat</h4>
-                    <nav class="blue-grey darken-4">
-                        <div class="nav-wrapper">
-                            <form>
-                                <div class="input-field">
-                                    <input id="modeVersus" type="search" onkeyup="searchPlayerVersus()">
-                                    <label class="label-icon" for="modeVersus"><i
-                                            class="material-icons">search</i></label>
-                                    <i class="material-icons">close</i>
-                                </div>
-                            </form>
+                    <h4>Entraînement</h4>
+                    <div class="divider"></div><br>
+                    <div class="row header_training">
+                        <div id="div_user" class="col s12 m3 l3">
+                            <img src="/static/img/user_avatar/default.png" alt="{{ current_user.avatar }}"
+                                 class="align-center responsive-img circle materialboxed" width="100">
+                            <p class="center">{{ user.username }}</p>
                         </div>
-                    </nav>
-                    <div style="max-height: 350px; overflow: auto;">
-                        <ul id="resultPlayerVersus" class="collapsible" data-collapsible="accordion">
-                            {% if classement|length == 1 %}
-                                <li>
-                                    <div class="collapsible-header">
-                                        Vous êtes seul(e) dans ce championnat
-                                    </div>
-                                </li>
-                            {% else %}
-                                {% for player in classement %}
-                                    {% if player.user != user %}
-                                        <li class="player_check">
-                                            <!--<div class="collapsible-header" onclick="location.href='/versus/{{ player.pk }}'">
-                                                <i class="material-icons">face</i>{{ player.user }} avec {{ player.points }}
-                                                points
-                                            </div>-->
-                                            <div class="collapsible-header">
-                                                <i class="material-icons">face</i>{{ player.user }}
-                                                avec {{ player.points }}
-                                                points.
-                                                <span class="badge">
-                                                    <input type="checkbox" id="{{ player.pk }}" name="check_training"
-                                                           value="/versus/1/{{ player.pk }}"/>
-                                                    <!--<input type="hidden" name="player" value="{{ player.pk }}"/>-->
-                                                    <label for="{{ player.pk }}"></label>
-                                                </span>
-                                            </div>
-                                        </li>
-                                    {% endif %}
-                                {% endfor %}
-                            {% endif %}
-                        </ul>
+                        <div class="col s12 m4 l4">
+                            <!-- <h4 class="center vertical-center" style="padding-top:25px">VS<h4> -->
+                            <img id="img_vs" src="/static/img/Vs.png" alt="joueur" height="80" width="55">
+                        </div>
+                        <div id="versus-select" class="col s12 m4 l4" >
+                            <div>
+                                <input name="optionSelect" id="player" type="checkbox" value="0" checked  autocomplete="off"/>
+                                <label id="label_player" for="player" >
+                                  <img src="/static/img/joueur2.png" alt="joueur" height="180" width="120">
+                                  <span>JOUEUR</span>
+                                </label>
+                                <input name="optionSelect" id="ia" type="checkbox" value="1"  autocomplete="off"/>
+                                <label id="label_ia" for="ia" style="border-left: none;">
+                                  <img src="/static/img/ia2.png" alt="joueur" height="140" width="200">
+                                  <span>I.A.</span>
+                                </label>
+                            </div>
+                        </div>
                     </div>
-                    <h4>Code Ordinateur</h4>
-
-                    <ul class="collapsible" data-collapsible="accordion">
-                        <li class="player_check">
-                            <div class="collapsible-header">
-                                <i class="material-icons">laptop</i>Ordinateur - Facile
-                                <span class="badge">
-                                <input type="checkbox" id="ordi1" name="check_training"
-                                       value="/versus/1/1/1#ORDI_FACILE"/>
-                                <label for="ordi1"></label>
-                            </span>
+                    <div id="player-select" class="row choice-panel">
+                        <h4>Choix du joueur</h4>
+                        <nav class="blue-grey darken-4">
+                            <div class="nav-wrapper">
+                                <form>
+                                    <div class="input-field">
+                                        <input id="modeVersus" type="search" onkeyup="searchPlayerVersus()">
+                                        <label class="label-icon" for="modeVersus"><i
+                                                class="material-icons">search</i></label>
+                                        <i class="material-icons">close</i>
+                                    </div>
+                                </form>
                             </div>
-                        </li>
-                        <li class="player_check">
-                            <div class="collapsible-header">
-                                <i class="material-icons">laptop</i>Ordinateur - Intermédiaire
-                                <span class="badge">
-                                <input type="checkbox" id="ordi2" name="check_training"
-                                       value="/versus/1/2/2#ORDI_INTERMEDIAIRE"/>
-                                <label for="ordi2"></label>
-                            </span>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="collapsible-header"><i class="material-icons">laptop</i>Ordinateur - Difficile
-                                <span
-                                        class=" badge " data-badge-caption="Bientôt disponible"></span></div>
-                            <!--<div class="collapsible-header" onclick="location.href='/versus/3/3#ORDI_DIFFICILE'"><i class="material-icons">laptop</i>CPU 3 - Difficile <span
-                                    class=" badge " data-badge-caption="Bientôt disponible"></span></div>-->
-                        </li>
-                    </ul>
+                        </nav>
+                        <div style="max-height: 350px; overflow: auto;">
+                            <ul id="resultPlayerVersus" class="collapsible" data-collapsible="accordion">
+                                {% if classement|length == 1 %}
+                                    <li>
+                                        <div class="collapsible-header">
+                                            Vous êtes seul(e) dans ce championnat
+                                        </div>
+                                    </li>
+                                {% else %}
+                                    {% for player in classement %}
+                                        {% if player.user != user %}
+                                            <li class="player_check">
+                                                <!--<div class="collapsible-header" onclick="location.href='/versus/{{ player.pk }}'">
+                                                    <i class="material-icons">face</i>{{ player.user }} avec {{ player.points }}
+                                                    points
+                                                </div>-->
+                                                <div class="collapsible-header">
+                                                    <i class="material-icons">face</i>{{ player.user }}
+                                                    avec {{ player.points }}
+                                                    points.
+                                                    <span class="badge">
+                                                        <input type="checkbox" id="{{ player.pk }}_training" name="check_training"
+                                                               value="/versus/0/{{ player.pk }}"/>
+                                                        <label for="{{ player.pk }}_training"></label>
+                                                    </span>
+                                                </div>
+                                            </li>
+                                        {% endif %}
+                                    {% endfor %}
+                                {% endif %}
+                            </ul>
+                        </div>
+                    </div>
+                    <div id="ia-select" class="row choice-panel">
+                        <h4>Niveau de l'IA</h4>
+                        <div class="checkbox-group align-center">
+                            <input name="check_training" id="ordi1" type="checkbox" value="/versus/0/1/1#ORDI_FACILE" checked/><label for="ordi1">Facile</label><input name="check_training" id="ordi2" type="checkbox" value="/versus/0/2/2#ORDI_INTERMEDIAIRE"/><label for="ordi2">Moyen</label>
+                        </div>
+                    </div>
 
-                    <h4>Vos codes</h4>
-                    <ul class="collapsible">
+                    <div class="row" id="code_actif">
+                      <h4>Votre code actif</h4>
+                        <div class="col s6 offset-m1 m2 offset-l1 l2">
+                            <img src="/static/img/file-icon.png" alt=""
+                                 class="align-center responsive-img materialboxed" width="100">
+                        </div>
                         {% for script in scripts %}
 
-                            {% if script.pk != active_script.pk %}
-                                <li class="player_check">
-                                    <div class="collapsible-header">
-                                        <i class="material-icons">insert_drive_file</i>
-                                        {{ script.name|truncatechars:22 }}
-                                        <span class="badge">
-                                            <input type="checkbox" id="{{ script.pk }}" name="check_training"
-                                                   value="/versus/1/{{ user.pk }}/{{ script.pk }}#{{ script.name }}"/>
-                                            <label for="{{ script.pk }}"></label>
-                                        </span>
-                                    </div>
-                                    <!--<a class="btn-flat" onclick="window.location.href='/editor/?script={{ script.pk }}'">Modifier</a>-->
-                                </li>
-                            {% else %}
-                                <li class="player_check">
-                                    <div class="collapsible-header">
-                                        <i class="material-icons">insert_drive_file</i>
-                                        {{ script.name|truncatechars:22 }}
-                                        <span class="new badge blue-grey yellow-text darken-4" data-badge-caption="Actif"></span>
-                                    </div>
-                                    <!--<a class="btn-flat" onclick="window.location.href='/editor/?script={{ script.pk }}'">Modifier</a>-->
-                                </li>
+                            {% if script.pk == active_script.pk %}
+                                <div class="col s6 m2 l2">
+                                    <p>{{ script.name|truncatechars:22 }}</p>
+                                    <!-- <a class="btn blue-grey darken-4" onclick="window.location.href='/editor/?script={{ script.pk }}'">Modifier</a> -->
+                                </div>
                             {% endif %}
 
                         {% endfor %}
-                    </ul>
+                        <div class="col m1 l1"></div>
+                        <div class="col s12 m6 l6">
+                          <ul class="col l12 s12 m12 collapsible  waves-effect blue-grey darken-4" data-collapsible="accordion">
+                            <li>
+                              <div class="collapsible-header">
+                                  <h4><i class="material-icons right">arrow_drop_down</i>Modifier</h4>
+                              </div>
+                              <div class="collapsible-body">
+                                <ul class="collection">
+                                  {% for script in scripts %}
+                                      {% if script.pk != active_script.pk %}
+                                  <li class="row collection-item {% if script.pk == selected.pk %} active {% endif %}">
+                                      <div style="cursor: pointer">
+                                        <div class="col s8 l8 m8">
+                                          <span class="blue-text">
+                                              {{ script.name|truncatechars:20 }}
+                                          </span>
+                                        </div>
+                                        <div class="col s4 l4 m4">
+                                          <form id="form_activer" action="{% url 'backend:editor' %}" method="post">
+                                            {% csrf_token %}
+                                            <input type="submit" class="actif btn waves-effect blue-grey darken-4" name="action" value="Activer">
+                                            <input type="hidden" name="selected_pk" value="{{ script.pk }}"/>
+                                          </form>
+                                        </div>
+                                      </div>
+                                  </li>
+
+                                      {% endif %}
+                                  {% endfor %}
+                                </ul>
+                              </div>
+                            </li>
+                          </ul>
+                        </div>
+                    </div>
+
+
+
+
                 </div>
                 <div class="modal-footer">
-                    <a onclick="window.location.href='/versus/1/'"
-                       class="modal-action modal-close waves-effect waves-green btn-flat left">Aléatoire</a>
-                    <input type="hidden" name="trigger_page" value="editor"/>
-                    <input type="hidden" name="selected_pk_training" value="{{ selected.pk }}"/>
+                    <a onclick="window.location.href='/versus/0/'"
+                       class="modal-action modal-close waves-effect waves-green btn-flat left hide-on-med-and-down">Aléatoire</a>
+                    <input type="hidden" name="trigger_page" value="index"/>
                     <button id="player_select" class="btn waves-effect waves-light blue-grey darken-4" type="submit"
-                            name="action" value="training">S'entraîner
+                            name="action" value="training">Lancer
                         <i class="material-icons right">play_arrow</i>
                     </button>
                 </div>
@@ -579,15 +674,50 @@
     <script src="{% static 'codemirror/addon/fold/comment-fold.js' %}"></script>
     <script src="{% static 'codemirror/keymap/sublime.js' %}"></script>
     <script type="text/javascript">
-        var code = "{{ temporary_text }}";
-        $('.tap-target').tapTarget('open');
-        $('input[type="checkbox"]').on('change', function () {
-            $('input[type="checkbox"]').not(this).prop('checked', false);
-        });
+
+      var selectedOption = 0;
+      var code = "{{ temporary_text }}";
+      $('.tap-target').tapTarget('open');
+      function optionSelect (option) {
+        if (option == selectedOption) return;
+
+        var ia = $("#ia-select");
+        var player = $("#player-select");
+
+        switch(option) {
+        case 0:
+            fadeReplace(ia, player);
+            break;
+        case 1:
+            fadeReplace(player, ia);
+            break;
+        }
+        selectedOption = option;
+      }
+
+      function fadeReplace (div1, div2) {
+          div1.fadeOut(500, function() {
+              div2.fadeIn(500);
+          });
+      }
+
 
         $('.player_check').click(function () {
             var checkbox = $(this).find('input[type=checkbox]');
             checkbox.prop("checked", !checkbox.prop("checked"));
+        });
+
+        $('#ia-select input[type="checkbox"]').on('change', function () {
+            $('#ia-select input[type="checkbox"]').not(this).prop('checked', false);
+        });
+
+        $('#versus-select input[type="checkbox"]').on('change', function () {
+            $('#versus-select input[type="checkbox"]').not(this).prop('checked', false);
+        });
+
+        $('input[name="optionSelect"]').on('change', function() {
+            var val = parseInt($(this).val());
+            optionSelect(val);
         });
 
         //onclick="document.getElementById('code').submit()
