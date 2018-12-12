@@ -65,20 +65,33 @@
           font-weight: bold;
           font-size: 1.5em;
         }
-        #img_vs{
-          margin-left: 30%;
-          margin-top: 30%;
+        #div_vs{
+          text-align: center;
         }
-        #code_actif div{
-          padding: 0;
+        #div_vs.col.l4 {
+          line-height: 236px;
+          margin-top: 20px;
         }
-        #code_actif p{
+        h6{
+          margin-top: 0;
+        }
+        #div_vs img{
+          text-align: center;
+        }
+        #code_actif span{
+          display: block;
           color: blue;
-          font-size: 2em;;
+          font-size: 1em;;
           font-weight: bold;
+          text-align: center;
+        }
+        #code_actif span i{
+          vertical-align: text-bottom;
+          color: black;
+
         }
         #code_actif .collapsible-header{
-          padding: 0 0 0 70px;
+          text-align: center;
         }
         #code_actif .collapsible-header h4{
           height: 50px;
@@ -180,6 +193,25 @@
         }
         #code nav div{
           background-color: PaleTurquoise;
+        }
+        #versus-select{
+          margin-bottom: 20px;
+        }
+        #versus-select.s12 span{
+          font-size: 1em;
+        }
+        #versus-select.s12 #label_ia img{
+          width: 160px;
+          height: 112px;
+        }
+        #resultPlayerVersus .collapsible-header{
+          margin: auto 5px;
+        }
+        #resultPlayerVersus .collapsible-header div{
+          vertical-align: text-bottom;
+        }
+        #resultPlayerVersus i{
+          vertical-align: middle;
         }
     </style>
 {% endblock %}
@@ -438,17 +470,20 @@
                 <div class="modal-content">
                     <h4>Entraînement</h4>
                     <div class="divider"></div><br>
-                    <div class="row header_training">
+                    <div class="row header_training align-middle">
                         <div id="div_user" class="col s12 m3 l3">
                             <img src="/static/img/user_avatar/default.png" alt="{{ current_user.avatar }}"
                                  class="align-center responsive-img circle materialboxed" width="100">
                             <p class="center">{{ user.username }}</p>
                         </div>
-                        <div class="col s12 m4 l4">
+                        <div id="div_vs" class="col s12 m4 l4">
                             <!-- <h4 class="center vertical-center" style="padding-top:25px">VS<h4> -->
-                            <img id="img_vs" src="/static/img/Vs.png" alt="joueur" height="80" width="55">
+                            <img src="/static/img/Vs.png" alt="joueur" height="80" width="55">
                         </div>
                         <div id="versus-select" class="col s12 m4 l4" >
+                            <div>
+                              <h6>Choisissez votre adversaire :
+                            </div>
                             <div>
                                 <input name="optionSelect" id="player" type="checkbox" value="0" checked  autocomplete="off"/>
                                 <label id="label_player" for="player" >
@@ -463,7 +498,7 @@
                             </div>
                         </div>
                     </div>
-                    <div id="player-select" class="row choice-panel">
+                      <div id="player-select" class="row choice-panel">
                         <h4>Choix du joueur</h4>
                         <nav class="blue-grey darken-4">
                             <div class="nav-wrapper">
@@ -489,19 +524,18 @@
                                     {% for player in classement %}
                                         {% if player.user != user %}
                                             <li class="player_check">
-                                                <!--<div class="collapsible-header" onclick="location.href='/versus/{{ player.pk }}'">
-                                                    <i class="material-icons">face</i>{{ player.user }} avec {{ player.points }}
-                                                    points
-                                                </div>-->
-                                                <div class="collapsible-header">
-                                                    <i class="material-icons">face</i>{{ player.user }}
-                                                    avec {{ player.points }}
-                                                    points.
-                                                    <span class="badge">
+                                                <div class="row collapsible-header">
+                                                    <div class="col s1 m2 l2">
+                                                      <i class="material-icons">face</i>
+                                                    </div>
+                                                    <div class="col s9 m9 l9">
+                                                      {{ player.user }} avec {{ player.points }} points.
+                                                    </div>
+                                                    <div class="badge col s1 l1 m1" style="padding:0;">
                                                         <input type="checkbox" id="{{ player.pk }}_training" name="check_training"
                                                                value="/versus/0/{{ player.pk }}"/>
                                                         <label for="{{ player.pk }}_training"></label>
-                                                    </span>
+                                                    </div>
                                                 </div>
                                             </li>
                                         {% endif %}
@@ -519,22 +553,30 @@
 
                     <div class="row" id="code_actif">
                       <h4>Votre code actif</h4>
-                        <div class="col s6 offset-m1 m2 offset-l1 l2">
-                            <img src="/static/img/file-icon.png" alt=""
-                                 class="align-center responsive-img materialboxed" width="100">
-                        </div>
+
                         {% for script in scripts %}
 
-                            {% if script.pk == active_script.pk %}
-                                <div class="col s6 m2 l2">
-                                    <p>{{ script.name|truncatechars:22 }}</p>
-                                    <!-- <a class="btn blue-grey darken-4" onclick="window.location.href='/editor/?script={{ script.pk }}'">Modifier</a> -->
-                                </div>
-                            {% endif %}
 
+                            <div class="col s12 m12 l12">
+
+
+                          {% if script.pk == active_script.pk %}
+
+                              <span>
+                                <i class="material-icons">description</i>
+                                <!-- <img src="/static/img/file-icon.png" alt=""
+                                   class="align-center responsive-img materialboxed" width="100"> -->
+                                {{ script.name|truncatechars:22 }}
+                              </span>
+                                  <!-- <a class="btn blue-grey darken-4" onclick="window.location.href='/editor/?script={{ script.pk }}'">Modifier</a> -->
+
+                          {% endif %}
+                        </div>
                         {% endfor %}
-                        <div class="col m1 l1"></div>
-                        <div class="col s12 m6 l6">
+
+                        {% if scripts_count > 1 %}
+
+                        <div class="col s12 offset-m3 m6 offset-l3 l6">
                           <ul class="col l12 s12 m12 collapsible  waves-effect blue-grey darken-4" data-collapsible="accordion">
                             <li>
                               <div class="collapsible-header">
@@ -568,11 +610,8 @@
                             </li>
                           </ul>
                         </div>
+                      {% endif %}
                     </div>
-
-
-
-
                 </div>
                 <div class="modal-footer">
                     <a onclick="window.location.href='/versus/0/'"
