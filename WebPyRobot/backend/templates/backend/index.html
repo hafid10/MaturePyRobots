@@ -10,6 +10,43 @@
 
     {% include 'backend/head.html' %}
 
+    <style>
+        .btn-play {
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+            padding: 0;
+            background: #cb4e4e;
+            color: #fff;
+            box-shadow: 0 6px #b6b6b6;
+            transition: none;
+            border: none;
+
+            background: none;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 700;
+            outline: none;
+            position: relative;
+            line-height: 100px;
+        }
+        #modalInscription span{
+            font-style: italic;
+            font-size: small;
+            margin-top: 0;
+        }
+        #modalInscription .modal-footer {
+            margin-top: 0;
+            padding-top: 0;
+        }
+        #mdp_diff {
+          color: red;
+          padding: 0 0 0 40px;
+          font-style: italic;
+          font-size: small;
+        }
+    </style>
 </head>
 <body>
 
@@ -72,27 +109,11 @@
 </div>
 <div id="modalInscription" class="modal">
     <div class="modal-content">
-        <form action="{% url 'backend:signup' %}" method="post">
+        <form action="{% url 'backend:signup' %}" method="post" onsubmit="return verifInscription(this);">
             {% csrf_token %}
             <h4>Inscription</h4>
             <div class="divider"></div><br>
             <div class="row">
-
-                <!--{% for field in form %}
-                  <div class="input-field col s12 m6 l6">
-                    {{ field }}
-                    <label for="{{ field.label }}">{{ field.label }}</label>
-                    {% if field.help_text %}
-                      <span>
-                        {{ field.help_text | safe }}
-                      </span>
-                    {% endif %}
-                    {% for error in field.errors %}
-                      <p style="color: red">{{ error }}</p>
-                    {% endfor %}
-                  </div>
-                {% endfor %}-->
-
                 <div class="input-field col s12 m12 l12">
                     {{ form.username }}
                     <label for="{{ form.username.label }}">{{ form.username.label }}</label>
@@ -129,18 +150,18 @@
                       </span>
                     {% endif %}
                 </div>
-                <div class="input-field col s12 m12 l12">
+                <div class="input-field col s12 m6 l6">
                     {{ form.password1 }}
                     <label for="{{ form.password1.label }}">{{ form.password1.label }}</label>
                 </div>
-                <div class="col s12 m12 l12">
+                <div class="col s12 m6 l6">
                     {% if form.password1.help_text %}
                       <span>
                         {{ form.password1.help_text | safe }}
                       </span>
                     {% endif %}
                 </div>
-                <div class="input-field col s12 m12 l12">
+                <div class="input-field col s12 m6 l6">
                     {{ form.password2 }}
                     <label for="{{ form.password2.label }}">{{ form.password2.label }}</label>
                     {% if form.password2.help_text %}
@@ -149,7 +170,10 @@
                       </span>
                     {% endif %}
                 </div>
+                <div id="mdp_diff" style="display:none">
+                </div>
             </div>
+
             <div class="modal-footer">
                 <input type="submit" value="S'inscrire" class=" modal-action waves-effect blue-grey darken-4 btn">
             </div>
@@ -190,11 +214,6 @@
                 </div>
             </div>
         </div>
-        <div class="parallax">
-            <!--
-            <img src="{% static 'img/armour.png' %}" alt="Unsplashed background img 1">
-            -->
-        </div>
     </div>
 </div>
 
@@ -231,5 +250,32 @@
     function closeModal() {
         $('#modalConnexion').modal();
     }
+
+     // verification du formulaire d'inscription:
+    function verifInscription(f){
+      var mdp_diff = document.getElementById("mdp_diff");
+      var regex = /[\!\^\$\(\)\[\]\{\}\?\+\*\/\\\|\&\#\"\'\<\>\=\£\%\$\¤\µ\§\:\;\~]/;
+      var pseudo = document.getElementById("pseudo");
+      var mdp1 = document.getElementById("mdp1");
+      var mdp2 = document.getElementById("mdp2");
+
+      if(( mdp1.value != mdp2.value )&&(mdp_diff.style.display === "none")){
+        mdp_diff.innerHTML = "Vos mots de passe doivent être identiques.";
+        mdp_diff.style.display = "block";
+        return false;
+      } else if( pseudo.value.match(regex) != null ){
+        pseudo.style.color = 'red';
+        document.getElementById("help_pseudo").style.color = 'red';
+        return false;
+      } else if (mdp1.value.length<8){
+        mdp_diff.innerHTML = "Vos mots doivent être de 8 caractères minimum.";
+        mdp_diff.style.display = "block";
+        return false;
+      }
+      else {
+          return true;
+     }
+   }
+
 </script>
 </html>

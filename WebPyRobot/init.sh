@@ -30,7 +30,7 @@ fi
 echo "Install dependencies"
 
 # install on pip only
-sudo $PIP_CMD install -r requirements.txt
+sudo $PIP_CMD install --user  -r requirements.txt
 # init data base
 $PYTHON_CMD ./manage.py makemigrations
 $PYTHON_CMD ./manage.py migrate

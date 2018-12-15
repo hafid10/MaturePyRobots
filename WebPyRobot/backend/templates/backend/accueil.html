@@ -20,6 +20,183 @@
             border-left-style: solid;
             border-left-color: rgb(255, 241, 118);
         }
+        h5{
+          text-align: center;
+        }
+        #versus-select{
+          vertical-align: top;
+        }
+        #versus-select label{
+          position: relative;
+        }
+        #versus-select label::before,
+        #versus-select label + #versus-select input + #versus-select label
+        {
+          border: none;
+          border-left: none;
+        }
+        #label_player img{
+          position: absolute;
+          left: 0;
+          top: 3px;
+          z-index: 200;
+        }
+        #label_player span{
+          position: absolute;
+          left: -10px;
+          top: 177px;
+          z-index: 200;
+        }
+        #label_ia {
+          text-align: right;
+        }
+        #label_ia span,
+        #label_player span {
+          color: black;
+          font-weight: bold;
+          font-size: 1.5em;
+        }
+        #label_ia img{
+          border-radius: 15px;
+        }
+        #div_user img{
+          margin-top: 50px;
+        }
+        #div_user p{
+          margin-bottom: 30px;
+          font-weight: bold;
+          font-size: 1.5em;
+        }
+        #div_vs{
+          text-align: center;
+        }
+        #div_vs.col.l4 {
+          line-height: 236px;
+          margin-top: 20px;
+        }
+        h6{
+          margin-top: 0;
+        }
+        #div_vs img{
+          text-align: center;
+        }
+        #code_actif span i{
+          vertical-align: text-bottom;
+          color: black;
+
+        }
+        #code_actif .collapsible-header{
+          text-align: center;
+        }
+        #code_actif .collapsible-header h4{
+          height: 50px;
+          margin: 0;
+          margin-top: 10px;
+        }
+        #code_actif .collapsible-header i{
+          font-size: 1.5em;
+        }
+        .btn:hover {
+            background-color: #388e3c;
+        }
+        .collection .collection-item.active .secondary-content {
+            color: #1a237e;
+        }
+        .secondary-content {
+            color: #b71c1c;
+        }
+        .collapsible-header{
+          padding: 5px;
+          display: block;
+          text-align: center;
+        }
+        .collapsible-header a{
+          color: black;
+        }
+        .collapsible-header h4{
+          margin: 0;
+          padding: 0;
+          font-size: 1.5em;
+        }
+        .collapsible-header h4 img{
+          vertical-align: middle;
+          margin: 5px;
+        }
+        .img_charger{
+          margin-right: 10px !important;
+        }
+        .collapsible-body {
+            padding: 5px 0 0 0;
+        }
+        #btn_validate{
+          padding: 0;
+          background-color: white;
+          border: none;
+        }
+        .nav-wrapper li input{
+          padding-left: 0;
+          margin-bottom: 0;
+          vertical-align: middle;
+        }
+        .nav-wrapper li img{
+          vertical-align: middle;
+          margin-bottom: 0;
+        }
+        .nav-wrapper li a{
+          padding-left: 10px;
+          margin-bottom: 0;
+          vertical-align: middle;
+        }
+        .nav-wrapper li a img{
+          vertical-align: middle;
+          margin-bottom: 5px;
+          margin-right: 10px;
+        }
+        #btn_validate{
+          background: transparent;
+        }
+        #form_activer i,i input{
+          padding: 0;
+          font-size: small;
+          width: 70px;
+          height: 28px;
+          border-radius: 5px;
+          vertical-align: top;
+          text-align: center;
+        }
+        .collection .collection-item.active {
+            background-color: #92E5EA;
+            color: #eafaf9;
+
+        }
+        .collection-item.active span{
+          font-size: small;
+          width: 70px;
+          height: 28px;
+          border-radius: 5px;
+          padding: 0;
+          color: yellow;
+          line-height: 27px;
+        }
+        #code nav div{
+          background-color: PaleTurquoise;
+        }
+        #versus-select{
+          margin-bottom: 20px;
+        }
+        #versus-select.s12 #label_ia img{
+          width: 160px;
+          height: 112px;
+        }
+        #resultPlayerVersus .collapsible-header{
+          margin: auto 5px;
+        }
+        #resultPlayerVersus .collapsible-header div{
+          vertical-align: text-bottom;
+        }
+        #resultPlayerVersus i{
+          vertical-align: middle;
+        }
     </style>
 
 {% endblock %}
@@ -49,7 +226,6 @@
             </div>
         {% endif %}
     </div>
-
     <div class="col s12 m4 l4">
         <div class="col s6 m12 l12">
             <div class="border-spaced">
@@ -65,7 +241,7 @@
         </div>
         <div class="col s6 m12 l12 ">
             <h4 class="center">Entraînement</h4>
-            <h5>Entraine-toi contre tes amis ou l'ordinateur dans un match amical.</h5>
+            <h5>Entraîne-toi contre tes amis ou l'ordinateur dans un match amical.</h5>
         </div>
     </div>
     <div class="col s12 m4 l4">
@@ -87,7 +263,7 @@
         </div>
         <div class="col s6 m12 l12 ">
             <h4 class="center">Editeur</h4>
-            <h5>Programmes ton tank pour le rendre plus efficace au combat.</h5>
+            <h5>Programme ton tank pour le rendre plus efficace au combat.</h5>
         </div>
     </div>
     <div class="col s12 m4 l4">
@@ -105,7 +281,7 @@
         </div>
         <div class="col s6 m12 l12 ">
             <h4 class="center">Championnat</h4>
-            <h5>Défis tes amis en 1v1 en championnat!</h5>
+            <h5>Défis tes amis en 1v1 en championnat et gagne des points!</h5>
         </div>
     </div>
 
@@ -116,22 +292,35 @@
                 <div class="modal-content">
                     <h4>Entraînement</h4>
                     <div class="divider"></div><br>
-                    <div class="row header_training">
-                        <div class="col s12 m4 l4">
+                    <div class="row header_training align-middle">
+                        <div id="div_user" class="col s12 m3 l3">
                             <img src="/static/img/user_avatar/default.png" alt="{{ current_user.avatar }}"
                                  class="align-center responsive-img circle materialboxed" width="100">
                             <p class="center">{{ user.username }}</p>
                         </div>
-                        <div class="col s12 m4 l4">
-                            <h4 class="center vertical-center">VS<h4>
+                        <div id="div_vs" class="col s12 m4 l4">
+                            <!-- <h4 class="center vertical-center" style="padding-top:25px">VS<h4> -->
+                            <img src="/static/img/Vs.png" alt="joueur" height="80" width="55">
                         </div>
-                        <div id="versus-select" class="col s12 m4 l4" style="margin-top: 50px;">
-                            <div class="checkbox-group align-center">
-                                <input name="optionSelect" id="player" type="checkbox" value="0" checked/><label for="player">Joueur</label><input name="optionSelect" id="ia" type="checkbox" value="1"/><label for="ia">IA</label>
+                        <div id="versus-select" class="col s12 m4 l4" >
+                            <div>
+                              <h6>Choisissez votre adversaire :
+                            </div>
+                            <div>
+                                <input name="optionSelect" id="player" type="checkbox" value="0" checked  autocomplete="off"/>
+                                <label id="label_player" for="player" >
+                                  <img src="/static/img/joueur2.png" alt="joueur" height="180" width="120">
+                                  <span>JOUEUR</span>
+                                </label>
+                                <input name="optionSelect" id="ia" type="checkbox" value="1"  autocomplete="off"/>
+                                <label id="label_ia" for="ia" style="border-left: none;">
+                                  <img src="/static/img/ia2.png" alt="joueur" height="140" width="200">
+                                  <span>I.A.</span>
+                                </label>
                             </div>
                         </div>
                     </div>
-                    <div id="player-select" class="row choice-panel">
+                      <div id="player-select" class="row choice-panel">
                         <h4>Choix du joueur</h4>
                         <nav class="blue-grey darken-4">
                             <div class="nav-wrapper">
@@ -157,19 +346,18 @@
                                     {% for player in classement %}
                                         {% if player.user != user %}
                                             <li class="player_check">
-                                                <!--<div class="collapsible-header" onclick="location.href='/versus/{{ player.pk }}'">
-                                                    <i class="material-icons">face</i>{{ player.user }} avec {{ player.points }}
-                                                    points
-                                                </div>-->
-                                                <div class="collapsible-header">
-                                                    <i class="material-icons">face</i>{{ player.user }}
-                                                    avec {{ player.points }}
-                                                    points.
-                                                    <span class="badge">
+                                                <div class="row collapsible-header">
+                                                    <div class="col s1 m2 l2">
+                                                      <i class="material-icons">face</i>
+                                                    </div>
+                                                    <div class="col s9 m9 l9">
+                                                      {{ player.user }} avec {{ player.points }} points.
+                                                    </div>
+                                                    <div class="badge col s1 l1 m1" style="padding:0;">
                                                         <input type="checkbox" id="{{ player.pk }}_training" name="check_training"
                                                                value="/versus/0/{{ player.pk }}"/>
                                                         <label for="{{ player.pk }}_training"></label>
-                                                    </span>
+                                                    </div>
                                                 </div>
                                             </li>
                                         {% endif %}
@@ -185,22 +373,63 @@
                         </div>
                     </div>
 
-                    <h4>Votre code actif</h4>
-                    <div class="row center">
-                        <div class="col s6 m6 l6">
-                            <img src="/static/img/file-icon.png" alt=""
-                                 class="align-center responsive-img materialboxed" width="100">
-                        </div>
+                    <div class="row" id="code_actif">
+                      <h4>Votre code actif</h4>
+
                         {% for script in scripts %}
 
-                            {% if script.pk == active_script.pk %}
-                                <div class="col s6 m6 l6">
-                                    <p>{{ script.name|truncatechars:22 }}</p>
-                                    <a class="btn blue-grey darken-4" onclick="window.location.href='/editor/?script={{ script.pk }}'">Modifier</a>
-                                </div>
-                            {% endif %}
 
+                            <div class="col s12 m12 l12 center">
+
+
+                          {% if script.pk == active_script.pk %}
+
+                              <span class="">
+                                <i class="material-icons">description</i>
+                                {{ script.name|truncatechars:22 }}
+                              </span>
+
+                          {% endif %}
+                        </div>
                         {% endfor %}
+
+                        {% if scripts_count > 1 %}
+
+                        <div class="col s12 offset-m3 m6 offset-l3 l6">
+                          <ul class="col l12 s12 m12 collapsible  waves-effect blue-grey darken-4" data-collapsible="accordion">
+                            <li>
+                              <div class="collapsible-header">
+                                  <h4><i class="material-icons right">arrow_drop_down</i>Modifier</h4>
+                              </div>
+                              <div class="collapsible-body">
+                                <ul class="collection">
+                                  {% for script in scripts %}
+                                      {% if script.pk != active_script.pk %}
+                                  <li class="row collection-item {% if script.pk == selected.pk %} active {% endif %}">
+                                      <div style="cursor: pointer">
+                                        <div class="col s8 l8 m8">
+                                          <span class="blue-text">
+                                              {{ script.name|truncatechars:20 }}
+                                          </span>
+                                        </div>
+                                        <div class="col s4 l4 m4">
+                                          <form id="form_activer" action="{% url 'backend:editor' %}" method="post">
+                                            {% csrf_token %}
+                                            <input type="submit" class="actif btn waves-effect blue-grey darken-4" name="action" value="Activer">
+                                            <input type="hidden" name="selected_pk" value="{{ script.pk }}"/>
+                                          </form>
+                                        </div>
+                                      </div>
+                                  </li>
+
+                                      {% endif %}
+                                  {% endfor %}
+                                </ul>
+                              </div>
+                            </li>
+                          </ul>
+                        </div>
+                      {% endif %}
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -340,11 +569,17 @@
             var val = parseInt($(this).val());
             optionSelect(val);
         })
+        $(".actif").click(function (e) {
+            $("#form_activer").submit();
+        });
 
         $(document).ready(function(){
             $("#ia-select").animate({
                 height: 'toggle'
             });
         });
+
+
+
     </script>
 {% endblock %}
