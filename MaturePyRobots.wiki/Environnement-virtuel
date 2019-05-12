@@ -1,0 +1,61 @@
+Doc sur l’environnement virtuel en Python :
+
+Python est un langage qui possède de nombreuses librairies. Il peut arriver que vous travailliez sur plusieurs projets à la fois nécessitant chacun des librairies de version différente. 
+Le cas Django est souvent problématique: pour un projet ça sera Django 1.8 et l'autre Django 1.9 . Alors il est possible de travailler sur une même lib mais avec des versions différentes grâce au packet virtualenv.
+
+Installation d'un venv avec python 3.3 :
+Si vous avez une version python > 3.3 vous pouvez suivre les commandes suivantes:
+cd /home/hafud
+mkdir venv
+cd /home/hafid/venv
+python3 -m venv eboutique --without-pip
+source eboutique/bin/activate
+wget https://bootstrap.pypa.io/get-pip.py
+python3 get-pip.py
+deactivate
+source eboutique/bin/activate
+pip --version
+
+Autres méthodes :
+Installer virtualenv avec pip
+Utilisons pip pour installer notre packet:
+pip install virtualenv
+
+Créer un environnement avec virtualenv :
+Nous pouvons maintenant créer notre environnement, pour cela restez au niveau de votre home et lancez la commande suivante:
+
+hafid@bigone:~$ virtualenv ap
+New python executable in ap/bin/python
+Installing setuptools, pip...done.
+
+Vous pouvez créer votre dossier de configuration où bon vous semble:
+Exemple:
+hafid@bigone:~$ virtualenv data/app
+
+Après l'installation, vous pouvez explorer le dossier de votre environnement:
+hafid@bigone:~$ ls ap/
+bin  include  lib
+
+Le dossier bin contient les exécutables pour créer votre environnement virtuel, c'est ici que se trouve l'interpréteur python.
+Le dossier include contient les entêtes de l'environnement.
+Le dossier lib contient les librairies tout simplement.
+
+Activer l'environnement virtuel :
+Pour lancer votre environnement virtuel, il vous suffit de lancer l'executable activate du dossier bin :
+hafid@bigone:~$ source ap/bin/activate
+
+Une fois la commande executée, l' environnement devrait s'afficher dans votre terminal :
+(ap)hafid@bigone:~$
+
+Créer un environnement avec une version de python différente :
+Si vous voulez changer la version de python dans votre environnement, vous pouvez utiliser le paramètre -p suivi du chemin de python
+Exemple:
+virtualenv -p /usr/bin/python3 p3
+
+Pour info vous pouvez trouver le chemin de python3 avec la commande which :
+hafid@bigone:~$ which python3
+/usr/bin/python3
+Sortir du virtuelanv
+
+Pour sortir de votre environnement virtuel, il vous suffit de lancer la commande :
+deactivate
