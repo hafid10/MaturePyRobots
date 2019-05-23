@@ -5,7 +5,7 @@ Le cas Django est souvent problématique: pour un projet ça sera Django 1.8�
 
 Installation d'un venv avec python 3.3 :
 Si vous avez une version python > 3.3 vous pouvez suivre les commandes suivantes:
-cd /home/hafud
+cd /home/hafid
 mkdir venv
 cd /home/hafid/venv
 python3 -m venv eboutique --without-pip
